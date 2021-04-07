@@ -82,15 +82,15 @@ public class Main extends GameApplication {
 
     @Override
     protected void onPreInit() {
-       /* getSaveLoadService().addHandler(new SaveLoadHandler() {
+       getSaveLoadService().addHandler(new SaveLoadHandler() {
             @Override
             public void onSave(DataFile data) {
                 // create a new bundle to store your data
-                Bundle bundle = new Bundle("gameData");
+                Bundle bundle = new Bundle("username");
 
                 // store some data
-                double time = getd("time");
-                bundle.put("time", time);
+                int progress = geti("progress");
+                bundle.put("progress", progress);
 
                 // give the bundle to data file
                 data.putBundle(bundle);
@@ -99,7 +99,7 @@ public class Main extends GameApplication {
             @Override
             public void onLoad(DataFile data) {
                 // get your previously saved bundle
-                var bundle = data.getBundle("gameData");
+                var bundle = data.getBundle("username");
 
                 // retrieve some data
                 double time = bundle.get("time");
@@ -107,7 +107,7 @@ public class Main extends GameApplication {
                 // update your game with saved data
                 set("time", time);
             }
-        });*/
+        });
     }
 
 
