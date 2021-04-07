@@ -12,6 +12,7 @@ import com.almasb.fxgl.profile.DataFile;
 import com.almasb.fxgl.profile.SaveLoadHandler;
 import javafx.scene.input.KeyCode;
 import nl.hsleiden.joshuabloch.game.EntityManager;
+import nl.hsleiden.joshuabloch.game.EntityType;
 import nl.hsleiden.joshuabloch.game.PlayerComponent;
 
 import java.util.EnumSet;
@@ -131,7 +132,11 @@ public class Main extends GameApplication {
 
     @Override
     protected void initPhysics() {
-
+        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.COIN, (player, coin) -> {
+            coin.removeFromWorld();
+            //TODO Increment the money variable
+            //TODO play coin pick up sound here
+        });
     }
 
     @Override

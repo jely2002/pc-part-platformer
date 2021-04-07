@@ -21,6 +21,7 @@ public class PlayerComponent extends Component implements Moveable {
     private LocalTimer walkTimer;
     private int AVAILABLE_JUMPS = 4;
 
+
     public PlayerComponent() {
         Image animImage = image("player_anim.png");
 
@@ -30,7 +31,6 @@ public class PlayerComponent extends Component implements Moveable {
         texture = new AnimatedTexture(still);
         walkTimer = FXGL.newLocalTimer();
         walkTimer.capture();
-        //texture.loop();
     }
 
     @Override
