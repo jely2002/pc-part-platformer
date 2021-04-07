@@ -21,8 +21,8 @@ public class PlayerComponent extends Component implements Moveable {
     public PlayerComponent() {
         Image animImage = image("player_anim.png");
 
-        still = new AnimationChannel(animImage, 4, 32, 42, Duration.seconds(1), 1, 1);
-        walk = new AnimationChannel(animImage, 4, 32, 42, Duration.seconds(1), 0, 3);
+        still = new AnimationChannel(animImage, 7, 31, 28, Duration.seconds(1), 3, 3);
+        walk = new AnimationChannel(animImage, 7, 31, 28, Duration.seconds(1), 3, 6);
 
         texture = new AnimatedTexture(still);
         texture.loop();
