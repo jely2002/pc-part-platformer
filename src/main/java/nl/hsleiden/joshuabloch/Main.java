@@ -11,6 +11,7 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.profile.DataFile;
 import com.almasb.fxgl.profile.SaveLoadHandler;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Text;
 import nl.hsleiden.joshuabloch.game.EntityManager;
 import nl.hsleiden.joshuabloch.game.EntityType;
 import nl.hsleiden.joshuabloch.game.PlayerComponent;
@@ -79,6 +80,7 @@ public class Main extends GameApplication {
         //highscores.put("")
         vars.put("highscores", new HashMap<Integer, Integer>());
         vars.put("progress", 0);
+        vars.put("coin", 0);
     }
 
     @Override
@@ -134,13 +136,23 @@ public class Main extends GameApplication {
     protected void initPhysics() {
         onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.COIN, (player, coin) -> {
             coin.removeFromWorld();
-            //TODO Increment the money variable
+            inc("coin", 1);
             //TODO play coin pick up sound here
         });
     }
 
     @Override
     protected void initUI() {
+        Text moneyText = new Text();
+        Text moneyDesc = new Text();
+        moneyDesc.setTranslateY(100);
+        moneyDesc.setTranslateX(30);
+        moneyText.setTranslateX(80);
+        moneyText.setTranslateY(100);
+        moneyDesc.textProperty().set("Coins:");
+        moneyText.textProperty().bind(getWorldProperties().intProperty("coin").asString());
+        getGameScene().addUINode(moneyText);
+        getGameScene().addUINode(moneyDesc);
 
     }
 
