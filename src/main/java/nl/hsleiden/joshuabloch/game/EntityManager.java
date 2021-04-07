@@ -1,5 +1,6 @@
 package nl.hsleiden.joshuabloch.game;
 
+import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
@@ -14,6 +15,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyDef;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import com.almasb.fxgl.texture.Texture;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -22,6 +24,21 @@ import javafx.scene.shape.Rectangle;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class EntityManager implements EntityFactory {
+
+    @Spawns("coin")
+    public Entity addCoin(SpawnData data) {
+        Texture texture = texture("coin.png");
+        texture.setScaleX(.5);
+        texture.setScaleY(.5);
+        texture.setTranslateX(texture.getWidth() * -0.5);
+        texture.setTranslateY(texture.getHeight() * -0.5);
+        return entityBuilder(data)
+                .type(EntityType.COIN)
+                .viewWithBBox(texture)
+                //.bbox(new HitBox())
+                .with(new CollidableComponent(true))
+                .build();
+    }
 
     @Spawns("background")
     public Entity addBackground(SpawnData data) {

@@ -23,6 +23,7 @@ public class PlayerComponent extends Component implements Moveable {
     private int AVAILABLE_JUMPS = 2;
     private final int MAX_AVAILABLE_JUMPS = 2;
 
+
     public PlayerComponent() {
         Image animImage = image("player_anim.png");
 
@@ -32,7 +33,6 @@ public class PlayerComponent extends Component implements Moveable {
         texture = new AnimatedTexture(still);
         walkTimer = FXGL.newLocalTimer();
         walkTimer.capture();
-        //texture.loop();
     }
 
     @Override

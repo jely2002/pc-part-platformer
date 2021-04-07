@@ -35,8 +35,8 @@ public class ScalperComponent extends Component implements Moveable {
         @Override
         protected void onUpdate(double tpf) {
             if(isInWalkingArea()) {
-                if(hasCollidedWithOther()) {
-                    System.out.println("not moving left");
+                avoidCollisionWithScalper();
+                if(hasCollidedWithPlatform()) {
                     moveRight();
                     moveRight();
                     entity.getComponent(StateComponent.class).changeState(GUARD_RIGHT);
@@ -55,8 +55,8 @@ public class ScalperComponent extends Component implements Moveable {
         @Override
         protected void onUpdate(double tpf) {
             if(isInWalkingArea()) {
-                if(hasCollidedWithOther()) {
-                    System.out.println("not moving right");
+                avoidCollisionWithScalper();
+                if(hasCollidedWithPlatform()) {
                     moveLeft();
                     moveLeft();
                     entity.getComponent(StateComponent.class).changeState(GUARD_LEFT);
@@ -103,12 +103,26 @@ public class ScalperComponent extends Component implements Moveable {
         return FXGL.getGameWorld().getEntitiesByType(EntityType.PLAYER).get(0);
     }
 
-    private boolean hasCollidedWithOther() {
-        List<Entity> collidingEntities = FXGL.getGameWorld().getClosestEntity(entity, e -> e.getType() == EntityType.PLATFORM).stream().collect(Collectors.toList());
-        if(collidingEntities.size() > 0 && platform != null) {
-            return collidingEntities.get(0) != platform && sqrDistance(collidingEntities.get(0).getBoundingBoxComponent(), entity.getPosition()) < 1000;
+    private boolean hasCollidedWithPlatform() {
+        List<Entity> collidingPlatforms = FXGL.getGameWorld().getClosestEntity(entity, e -> e.getType() == EntityType.PLATFORM).stream().collect(Collectors.toList());
+        if(collidingPlatforms.size() > 0 && platform != null) {
+            return collidingPlatforms.get(0) != platform && sqrDistance(collidingPlatforms.get(0).getBoundingBoxComponent(), entity.getPosition()) < 1000;
         } else {
             return false;
+        }
+    }
+
+    private void avoidCollisionWithScalper() {
+        List<Entity> collidingScalpers = FXGL.getGameWorld().getClosestEntity(entity, e -> e.getType() == EntityType.SCALPER).stream().collect(Collectors.toList());
+        if(collidingScalpers.size() > 0 && platform != null && sqrDistance(collidingScalpers.get(0).getBoundingBoxComponent(), entity.getPosition()) < 1000 && turnTimer.elapsed(Duration.seconds(1))) {
+            turnTimer.capture();
+            if(entity.getComponent(StateComponent.class).getCurrentState() == GUARD_LEFT) {
+                moveLeft();
+                entity.getComponent(StateComponent.class).changeState(GUARD_RIGHT);
+            } else {
+                moveRight();
+                entity.getComponent(StateComponent.class).changeState(GUARD_LEFT);
+            }
         }
     }
 
@@ -123,6 +137,7 @@ public class ScalperComponent extends Component implements Moveable {
             return entity.getBoundingBoxComponent().isWithin(walkingArea);
         }
     }
+
 
     static double sqrDistance(BoundingBoxComponent rect, Point2D p) {
         double rx = (rect.getMinXWorld() + rect.getMaxXWorld()) / 2;
