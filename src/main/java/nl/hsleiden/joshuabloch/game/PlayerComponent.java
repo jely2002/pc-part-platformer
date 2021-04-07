@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
+import static com.almasb.fxgl.dsl.FXGL.getAudioPlayer;
 import static com.almasb.fxgl.dsl.FXGL.image;
 
 public class PlayerComponent extends Component implements Moveable {
@@ -19,7 +20,8 @@ public class PlayerComponent extends Component implements Moveable {
     private AnimatedTexture texture;
     private AnimationChannel walk, still;
     private LocalTimer walkTimer;
-    private int AVAILABLE_JUMPS = 4;
+    private int AVAILABLE_JUMPS = 2;
+    private final int MAX_AVAILABLE_JUMPS = 2;
 
 
     public PlayerComponent() {
@@ -38,7 +40,10 @@ public class PlayerComponent extends Component implements Moveable {
         entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
         entity.getViewComponent().addChild(texture);
         physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
-            if(isOnGround) AVAILABLE_JUMPS = 4;
+            if(isOnGround) {
+                if (AVAILABLE_JUMPS < MAX_AVAILABLE_JUMPS) FXGL.play("land.wav");
+                AVAILABLE_JUMPS = MAX_AVAILABLE_JUMPS;
+            }
         });
     }
 
@@ -66,6 +71,11 @@ public class PlayerComponent extends Component implements Moveable {
         if(AVAILABLE_JUMPS == 0) return;
         physics.setVelocityY(-FXGLMath.abs(velocity));
         AVAILABLE_JUMPS--;
+
+        // Play SoundFX when jumped once
+        if(AVAILABLE_JUMPS == (MAX_AVAILABLE_JUMPS - 1)) FXGL.play("jump.wav");
+
+
     }
 
     public void stopMovement() {
