@@ -32,9 +32,10 @@ public class Main extends GameApplication {
         settings.setTitle("PC builder : 2021");
         settings.setVersion("1.0");
         settings.setMainMenuEnabled(true);
-        settings.setEnabledMenuItems(EnumSet.allOf(MenuItem.class));
+        settings.setSceneFactory(new MySceneFactory());
+        //settings.setEnabledMenuItems(EnumSet.allOf(MenuItem.class));
         settings.setFullScreenAllowed(true);
-        settings.setProfilingEnabled(true);
+        //settings.setProfilingEnabled(true);
     }
 
     @Override
