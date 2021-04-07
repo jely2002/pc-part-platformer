@@ -12,7 +12,6 @@ import com.almasb.fxgl.profile.DataFile;
 import com.almasb.fxgl.profile.SaveLoadHandler;
 import javafx.scene.input.KeyCode;
 import nl.hsleiden.joshuabloch.game.EntityManager;
-import nl.hsleiden.joshuabloch.game.EntityType;
 import nl.hsleiden.joshuabloch.game.PlayerComponent;
 
 import java.util.EnumSet;
@@ -79,19 +78,20 @@ public class Main extends GameApplication {
         //highscores.put("")
         vars.put("highscores", new HashMap<Integer, Integer>());
         vars.put("progress", 0);
+        vars.put("coin", 0);
     }
 
     @Override
     protected void onPreInit() {
-       getSaveLoadService().addHandler(new SaveLoadHandler() {
+       /* getSaveLoadService().addHandler(new SaveLoadHandler() {
             @Override
             public void onSave(DataFile data) {
                 // create a new bundle to store your data
-                Bundle bundle = new Bundle("username");
+                Bundle bundle = new Bundle("gameData");
 
                 // store some data
-                int progress = geti("progress");
-                bundle.put("progress", progress);
+                double time = getd("time");
+                bundle.put("time", time);
 
                 // give the bundle to data file
                 data.putBundle(bundle);
@@ -100,7 +100,7 @@ public class Main extends GameApplication {
             @Override
             public void onLoad(DataFile data) {
                 // get your previously saved bundle
-                var bundle = data.getBundle("username");
+                var bundle = data.getBundle("gameData");
 
                 // retrieve some data
                 double time = bundle.get("time");
@@ -108,7 +108,7 @@ public class Main extends GameApplication {
                 // update your game with saved data
                 set("time", time);
             }
-        });
+        });*/
     }
 
 
@@ -132,11 +132,10 @@ public class Main extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.COIN, (player, coin) -> {
-            coin.removeFromWorld();
-            //TODO Increment the money variable
-            //TODO play coin pick up sound here
-        });
+      onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.COIN,(player, coin)-> {
+           coin.removeFromWorld();
+           inc("coin", 1);
+      });  
     }
 
     @Override
