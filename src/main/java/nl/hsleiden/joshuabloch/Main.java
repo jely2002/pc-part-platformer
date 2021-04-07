@@ -28,6 +28,7 @@ public class Main extends GameApplication {
     protected void initSettings(GameSettings settings) {
         settings.setWidth(1280);
         settings.setHeight(720);
+        settings.setAppIcon("icon.png");
         settings.setTitle("PC builder : 2021");
         settings.setVersion("1.0");
         settings.setMainMenuEnabled(true);
