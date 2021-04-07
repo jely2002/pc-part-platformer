@@ -1,10 +1,12 @@
 package nl.hsleiden.joshuabloch.game;
 
 import com.almasb.fxgl.core.math.FXGLMath;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import com.almasb.fxgl.time.LocalTimer;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
@@ -16,16 +18,19 @@ public class PlayerComponent extends Component implements Moveable {
     private PhysicsComponent physics;
     private AnimatedTexture texture;
     private AnimationChannel walk, still;
+    private LocalTimer walkTimer;
     private int AVAILABLE_JUMPS = 4;
 
     public PlayerComponent() {
         Image animImage = image("player_anim.png");
 
-        still = new AnimationChannel(animImage, 7, 31, 28, Duration.seconds(1), 3, 3);
-        walk = new AnimationChannel(animImage, 7, 31, 28, Duration.seconds(1), 3, 6);
+        still = new AnimationChannel(animImage, 8, 31, 28, Duration.seconds(1), 3, 3);
+        walk = new AnimationChannel(animImage, 8, 31, 28, Duration.seconds(0.66), 3, 6);
 
         texture = new AnimatedTexture(still);
-        texture.loop();
+        walkTimer = FXGL.newLocalTimer();
+        walkTimer.capture();
+        //texture.loop();
     }
 
     @Override
@@ -39,9 +44,10 @@ public class PlayerComponent extends Component implements Moveable {
 
     @Override
     public void onUpdate(double tpf) {
-        if(physics.isMovingX() && texture.getAnimationChannel() != walk) {
+        if(physics.isMovingX() && texture.getAnimationChannel() != walk && walkTimer.elapsed(Duration.seconds(1))) {
+            walkTimer.capture();
             texture.loopAnimationChannel(walk);
-        } else if(texture.getAnimationChannel() != still) {
+        } else if(texture.getAnimationChannel() != still && (walkTimer.elapsed(Duration.seconds(1))) || !physics.isMovingX()) {
             texture.loopAnimationChannel(still);
         }
     }

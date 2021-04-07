@@ -73,8 +73,7 @@ public class EntityManager implements EntityFactory {
 
         return entityBuilder(data)
                 .type(EntityType.PLAYER)
-                .bbox(new HitBox(new Point2D(5,5), BoundingShape.circle(12)))
-                .bbox(new HitBox(new Point2D(10,25), BoundingShape.box(10,17)))
+                .bbox(new HitBox(new Point2D(5,5), BoundingShape.circle(11)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
