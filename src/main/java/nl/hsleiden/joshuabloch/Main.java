@@ -11,7 +11,9 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.profile.DataFile;
 import com.almasb.fxgl.profile.SaveLoadHandler;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Text;
 import nl.hsleiden.joshuabloch.game.EntityManager;
+import nl.hsleiden.joshuabloch.game.EntityType;
 import nl.hsleiden.joshuabloch.game.PlayerComponent;
 
 import java.util.EnumSet;
@@ -83,15 +85,15 @@ public class Main extends GameApplication {
 
     @Override
     protected void onPreInit() {
-       /* getSaveLoadService().addHandler(new SaveLoadHandler() {
+       getSaveLoadService().addHandler(new SaveLoadHandler() {
             @Override
             public void onSave(DataFile data) {
                 // create a new bundle to store your data
-                Bundle bundle = new Bundle("gameData");
+                Bundle bundle = new Bundle("username");
 
                 // store some data
-                double time = getd("time");
-                bundle.put("time", time);
+                int progress = geti("progress");
+                bundle.put("progress", progress);
 
                 // give the bundle to data file
                 data.putBundle(bundle);
@@ -100,7 +102,7 @@ public class Main extends GameApplication {
             @Override
             public void onLoad(DataFile data) {
                 // get your previously saved bundle
-                var bundle = data.getBundle("gameData");
+                var bundle = data.getBundle("username");
 
                 // retrieve some data
                 double time = bundle.get("time");
@@ -108,7 +110,7 @@ public class Main extends GameApplication {
                 // update your game with saved data
                 set("time", time);
             }
-        });*/
+        });
     }
 
 
@@ -132,14 +134,25 @@ public class Main extends GameApplication {
 
     @Override
     protected void initPhysics() {
-      onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.COIN,(player, coin)-> {
-           coin.removeFromWorld();
-           inc("coin", 1);
-      });  
+        onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.COIN, (player, coin) -> {
+            coin.removeFromWorld();
+            inc("coin", 1);
+            //TODO play coin pick up sound here
+        });
     }
 
     @Override
     protected void initUI() {
+        Text moneyText = new Text();
+        Text moneyDesc = new Text();
+        moneyDesc.setTranslateY(100);
+        moneyDesc.setTranslateX(30);
+        moneyText.setTranslateX(80);
+        moneyText.setTranslateY(100);
+        moneyDesc.textProperty().set("Coins:");
+        moneyText.textProperty().bind(getWorldProperties().intProperty("coin").asString());
+        getGameScene().addUINode(moneyText);
+        getGameScene().addUINode(moneyDesc);
 
     }
 
