@@ -12,6 +12,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.FontType;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Point2D;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -33,61 +34,36 @@ public class mainMenu extends FXGLMenu {
         getContentRoot().setTranslateX(FXGL.getAppWidth() / 2.0 - SIZE);
         getContentRoot().setTranslateY(FXGL.getAppHeight() / 2.0 - SIZE);
 
-        var shape = Shape.subtract(new Circle(SIZE, SIZE, SIZE), new Rectangle(0, SIZE, SIZE*2, SIZE));
 
-        var shape2 = Shape.subtract(shape, new Rectangle(0, 0, SIZE, SIZE));
+        // Button Play
+        var buttonPlay = new Rectangle(SIZE*2, SIZE / 2);
+        buttonPlay.setStrokeWidth(2.5);
+        buttonPlay.strokeProperty().bind(Bindings.when(buttonPlay.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
+        buttonPlay.fillProperty().bind(Bindings.when(buttonPlay.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonPlay.setTranslateY(200);
 
-        shape = Shape.subtract(shape, new Rectangle(SIZE, 0, SIZE, SIZE));
 
-        shape.setStrokeWidth(2.5);
-        shape.strokeProperty().bind(
-                Bindings.when(shape.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK)
-        );
 
-        shape.fillProperty().bind(
-                Bindings.when(shape.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75))
-        );
+        // Text Play
+        Text textOptions = FXGL.getUIFactoryService().newText("PLAY", Color.RED, FontType.GAME, setBackground(Color.BLUE), 24.0);
+        textOptions.setTranslateX((buttonPlay.getWidth() / 2) - (textOptions.getLayoutBounds().getWidth() / 2));
+//        textOptions.setTranslateY(buttonPlay.getTranslateY() + (buttonPlay.getHeight() / 2) - (textOptions.getLayoutBounds().getHeight() / 2));
+        textOptions.setTranslateY(buttonPlay.getTranslateY() + textOptions.getLayoutBounds().getHeight() );
 
-        shape.setOnMouseClicked(e -> fireResume());
 
-        shape2.setStrokeWidth(2.5);
-        shape2.strokeProperty().bind(
-                Bindings.when(shape2.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK)
-        );
 
-        shape2.fillProperty().bind(
-                Bindings.when(shape2.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75))
-        );
-        shape2.setOnMouseClicked(e -> FXGL.getGameController().exit());
+        System.out.println((textOptions.getLayoutBounds().getHeight()));
 
-        var shape3 = new Rectangle(SIZE*2, SIZE / 2);
-        shape3.setStrokeWidth(2.5);
-        shape3.strokeProperty().bind(
-                Bindings.when(shape3.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK)
-        );
 
-        shape3.fillProperty().bind(
-                Bindings.when(shape3.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75))
-        );
 
-        shape3.setTranslateY(SIZE);
-
-        Text textResume = FXGL.getUIFactoryService().newText("RESUME", Color.WHITE, FontType.GAME, 24.0);
-        textResume.setTranslateX(50);
-        textResume.setTranslateY(100);
-        textResume.setMouseTransparent(true);
-
-        Text textExit = FXGL.getUIFactoryService().newText("EXIT", Color.WHITE, FontType.GAME, 24.0);
-        textExit.setTranslateX(200);
-        textExit.setTranslateY(100);
-        textExit.setMouseTransparent(true);
-
-        Text textOptions = FXGL.getUIFactoryService().newText("OPTIONS", Color.WHITE, FontType.GAME, 24.0);
-        textOptions.setTranslateX(110);
-        textOptions.setTranslateY(195);
+//        System.out.println(buttonPlay.getTranslateY());
+//        System.out.println(buttonPlay.getTranslateY() + (SIZE / 2));
         textOptions.setMouseTransparent(true);
 
-        getContentRoot().getChildren().addAll(shape, shape2, shape3, textResume, textExit, textOptions);
+
+
+
+        getContentRoot().getChildren().addAll(buttonPlay, textOptions);
 
         getContentRoot().setScaleX(0);
         getContentRoot().setScaleY(0);
@@ -109,24 +85,16 @@ public class mainMenu extends FXGLMenu {
     }
 
     @Override
-
     public void onCreate() {
-
         animation.setOnFinished(EmptyRunnable.INSTANCE);
-
         animation.stop();
-
         animation.start();
 
     }
 
 
-
     @Override
-
     protected void onUpdate(double tpf) {
-
         animation.onUpdate(tpf);
-
     }
 }
