@@ -78,6 +78,7 @@ public class Main extends GameApplication {
         //highscores.put("")
         vars.put("highscores", new HashMap<Integer, Integer>());
         vars.put("progress", 0);
+        vars.put("coin", 0);
     }
 
     @Override
@@ -131,7 +132,10 @@ public class Main extends GameApplication {
 
     @Override
     protected void initPhysics() {
-
+      onCollisionOneTimeOnly(EntityType.PLAYER, EntityType.COIN,(player, coin)-> {
+           coin.removeFromWorld();
+           inc("coin", 1);
+      });  
     }
 
     @Override
