@@ -1,6 +1,7 @@
 package nl.hsleiden.joshuabloch.menu;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
+import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.MenuType;
 import com.almasb.fxgl.app.scene.SceneFactory;
 
@@ -15,4 +16,5 @@ public class MySceneFactory extends SceneFactory {
     public FXGLMenu newGameMenu() {
         return new gameMenu(MenuType.GAME_MENU);
     }
+
 }

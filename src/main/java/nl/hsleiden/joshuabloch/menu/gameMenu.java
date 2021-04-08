@@ -47,48 +47,58 @@ public class gameMenu extends FXGLMenu {
         imageView.setFitWidth(FXGL.getAppWidth());
         imageView.setFitHeight(FXGL.getAppHeight());
 
+        final int arcint = 15;
+
         // Button Resume
         var buttonResume = new Rectangle(SIZE*2, SIZE / 2);
-        buttonResume.setStrokeWidth(2.5);
-        buttonResume.strokeProperty().bind(Bindings.when(buttonResume.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonResume.fillProperty().bind(Bindings.when(buttonResume.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonResume.setStrokeWidth(4);
+        buttonResume.setArcHeight(arcint);
+        buttonResume.setArcWidth(arcint);
+        buttonResume.strokeProperty().bind(Bindings.when(buttonResume.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonResume.fillProperty().bind(Bindings.when(buttonResume.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonResume.setOnMouseClicked(e -> FXGL.getGameController().gotoPlay());
 
         // Button Restart
         var buttonRestart = new Rectangle(SIZE*2, SIZE / 2);
-        buttonRestart.setStrokeWidth(2.5);
-        buttonRestart.strokeProperty().bind(Bindings.when(buttonRestart.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonRestart.fillProperty().bind(Bindings.when(buttonRestart.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonRestart.setStrokeWidth(4);
+        buttonRestart.setArcHeight(arcint);
+        buttonRestart.setArcWidth(arcint);
+        buttonRestart.strokeProperty().bind(Bindings.when(buttonRestart.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonRestart.fillProperty().bind(Bindings.when(buttonRestart.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonRestart.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
 
         // Button MainMenu
         var buttonMainMenu = new Rectangle(SIZE*2, SIZE / 2);
-        buttonMainMenu.setStrokeWidth(2.5);
-        buttonMainMenu.strokeProperty().bind(Bindings.when(buttonMainMenu.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonMainMenu.fillProperty().bind(Bindings.when(buttonMainMenu.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonMainMenu.setStrokeWidth(4);
+        buttonMainMenu.setArcHeight(arcint);
+        buttonMainMenu.setArcWidth(arcint);
+        buttonMainMenu.strokeProperty().bind(Bindings.when(buttonMainMenu.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonMainMenu.fillProperty().bind(Bindings.when(buttonMainMenu.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonMainMenu.setOnMouseClicked(e -> FXGL.getGameController().gotoMainMenu());
 
         // Button Quit
         var buttonQuit = new Rectangle(SIZE*2, SIZE / 2);
-        buttonQuit.setStrokeWidth(2.5);
-        buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonQuit.setStrokeWidth(4);
+        buttonQuit.setArcHeight(arcint);
+        buttonQuit.setArcWidth(arcint);
+        buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonQuit.setOnMouseClicked(e -> FXGL.getGameController().exit());
 
         // Text Resume
-        Text textResume = FXGL.getUIFactoryService().newText("RESUME", Color.RED, FontType.GAME, 24.0);
+        Text textResume = FXGL.getUIFactoryService().newText("RESUME", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textResume.setTextAlignment(TextAlignment.CENTER);
 
         // Text Restart
-        Text textRestart = FXGL.getUIFactoryService().newText("RESTART LEVEL", Color.RED, FontType.GAME, 24.0);
+        Text textRestart = FXGL.getUIFactoryService().newText("RESTART LEVEL", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textRestart.setTextAlignment(TextAlignment.CENTER);
 
         // Text mainMenu
-        Text textMainMenu = FXGL.getUIFactoryService().newText("BACK TO MENU", Color.RED, FontType.GAME, 24.0);
+        Text textMainMenu = FXGL.getUIFactoryService().newText("BACK TO MENU", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textMainMenu.setTextAlignment(TextAlignment.CENTER);
 
         // Text Quit
-        Text textQuit = FXGL.getUIFactoryService().newText("QUIT", Color.RED, FontType.GAME, 24.0);
+        Text textQuit = FXGL.getUIFactoryService().newText("QUIT", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textQuit.setTextAlignment(TextAlignment.CENTER);
 
         textResume.setMouseTransparent(true);
