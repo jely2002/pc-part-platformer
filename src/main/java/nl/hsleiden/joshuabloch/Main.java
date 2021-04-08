@@ -128,7 +128,7 @@ public class Main extends GameApplication {
         player = spawn("player", 50, 50);
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(-1500, 0, 100 * 32, getAppHeight());
+        viewport.setBounds(-1500, 0, 130 * 32, getAppHeight());
         viewport.bindToEntity(player, getAppWidth() / 2f, getAppHeight() /2f);
         viewport.setLazy(true);
     }
