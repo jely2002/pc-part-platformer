@@ -3,7 +3,6 @@ package nl.hsleiden.joshuabloch;
 import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.MenuItem;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.core.serialization.Bundle;
 import com.almasb.fxgl.dsl.FXGL;
@@ -22,8 +21,8 @@ import javafx.util.Duration;
 import nl.hsleiden.joshuabloch.game.EntityManager;
 import nl.hsleiden.joshuabloch.game.EntityType;
 import nl.hsleiden.joshuabloch.game.PlayerComponent;
+import nl.hsleiden.joshuabloch.menu.MySceneFactory;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +44,7 @@ public class Main extends GameApplication {
         //settings.setEnabledMenuItems(EnumSet.allOf(MenuItem.class));
         settings.setFullScreenAllowed(true);
         //settings.setProfilingEnabled(true);
+        settings.setDeveloperMenuEnabled(true);
     }
 
     @Override

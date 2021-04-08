@@ -1,4 +1,4 @@
-package nl.hsleiden.joshuabloch;
+package nl.hsleiden.joshuabloch.menu;
 
 import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.animation.Interpolators;
@@ -41,28 +41,39 @@ public class mainMenu extends FXGLMenu {
         buttonPlay.strokeProperty().bind(Bindings.when(buttonPlay.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
         buttonPlay.fillProperty().bind(Bindings.when(buttonPlay.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
         buttonPlay.setTranslateY(200);
+        buttonPlay.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
+
+        // Button Quit
+        var buttonQuit = new Rectangle(SIZE*2, SIZE / 2);
+        buttonQuit.setStrokeWidth(2.5);
+        buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
+        buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonQuit.setTranslateY(300);
+        buttonQuit.setOnMouseClicked(e -> FXGL.getGameController().exit());
 
 
 
         // Text Play
-        Text textOptions = FXGL.getUIFactoryService().newText("PLAY", Color.RED, FontType.GAME, 24.0);
-        textOptions.setTranslateX((buttonPlay.getWidth() / 2) - (textOptions.getLayoutBounds().getWidth() / 2));
-        textOptions.setTranslateY(buttonPlay.getTranslateY() + (buttonPlay.getHeight() / 2) + (textOptions.getLayoutBounds().getHeight() / 4) );
+        Text textPlay = FXGL.getUIFactoryService().newText("PLAY", Color.RED, FontType.GAME, 24.0);
+        textPlay.setTranslateX((buttonPlay.getWidth() / 2) - (textPlay.getLayoutBounds().getWidth() / 2));
+        textPlay.setTranslateY(buttonPlay.getTranslateY() + (buttonPlay.getHeight() / 2) + (textPlay.getLayoutBounds().getHeight() / 4) );
 
-
-
-        System.out.println((textOptions.getLayoutBounds().getHeight()));
+        // Text Quit
+        Text textQuit = FXGL.getUIFactoryService().newText(" QUIT", Color.RED, FontType.GAME, 24.0);
+        textQuit.setTranslateX((buttonQuit.getWidth() / 2) - (textQuit.getLayoutBounds().getWidth() / 2));
+        textQuit.setTranslateY(buttonQuit.getTranslateY() + (buttonQuit.getHeight() / 2) + (textQuit.getLayoutBounds().getHeight() / 4) );
 
 
 
 //        System.out.println(buttonPlay.getTranslateY());
 //        System.out.println(buttonPlay.getTranslateY() + (SIZE / 2));
-        textOptions.setMouseTransparent(true);
+        textPlay.setMouseTransparent(true);
+        textQuit.setMouseTransparent(true);
 
 
 
 
-        getContentRoot().getChildren().addAll(buttonPlay, textOptions);
+        getContentRoot().getChildren().addAll(buttonPlay, textPlay, buttonQuit, textQuit);
 
         getContentRoot().setScaleX(0);
         getContentRoot().setScaleY(0);

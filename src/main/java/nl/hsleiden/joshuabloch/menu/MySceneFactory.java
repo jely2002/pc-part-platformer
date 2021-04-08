@@ -1,4 +1,4 @@
-package nl.hsleiden.joshuabloch;
+package nl.hsleiden.joshuabloch.menu;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
@@ -13,6 +13,6 @@ public class MySceneFactory extends SceneFactory {
 
     @Override
     public FXGLMenu newGameMenu() {
-        return new mainMenu(MenuType.GAME_MENU);
+        return new gameMenu(MenuType.GAME_MENU);
     }
 }
