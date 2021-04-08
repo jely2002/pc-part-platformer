@@ -1,6 +1,7 @@
 package nl.hsleiden.joshuabloch.game;
 
 import com.almasb.fxgl.animation.Interpolators;
+import com.almasb.fxgl.core.math.Vec2;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.LiftComponent;
 import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
@@ -20,14 +21,20 @@ import com.almasb.fxgl.texture.Texture;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import nl.hsleiden.joshuabloch.LevelManager;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class EntityManager implements EntityFactory {
 
+    private final LevelManager levelManager;
+    public EntityManager(LevelManager levelManager) {
+        this.levelManager = levelManager;
+    }
+
     @Spawns("coin")
     public Entity addCoin(SpawnData data) {
-        Texture texture = texture("coin.png");
+        Texture coinTex = texture("coin.png");
 
         LiftComponent lift = new LiftComponent();
         lift.setGoingUp(true);
@@ -35,7 +42,7 @@ public class EntityManager implements EntityFactory {
 
         return entityBuilder(data)
                 .type(EntityType.COIN)
-                .viewWithBBox(getScaledTexture(1, texture))
+                .viewWithBBox(coinTex)
                 .with(new CollidableComponent(true))
                 .with(lift)
                 .build();
@@ -43,26 +50,20 @@ public class EntityManager implements EntityFactory {
 
     @Spawns("sack")
     public Entity addSack(SpawnData data) {
-        Texture texture = texture("sack.png");
+        Texture sackTex = texture("sack.png");
 
-        Entity sack = entityBuilder(data)
+        LiftComponent lift = new LiftComponent();
+        lift.setGoingUp(true);
+        lift.yAxisDistanceDuration(6, Duration.seconds(2));
+
+
+        return entityBuilder(data)
                 .type(EntityType.SACK)
-                .viewWithBBox(texture)
+                .viewWithBBox(sackTex)
+                .with(lift)
                 .with(new CollidableComponent(true))
                 .build();
 
-        //sack.getTransformComponent().setScaleOrigin(new Point2D(sack.getWidth() / 4, sack.getHeight() / 4));
-        FXGL.animationBuilder()
-                .interpolator(Interpolators.SMOOTH.EASE_IN_OUT())
-                .duration(Duration.seconds(2))
-                .repeatInfinitely()
-                .autoReverse(true)
-                .scale(sack)
-                .from(new Point2D(1, 1))
-                .to(new Point2D(1.1, 1.1))
-                .buildAndPlay();
-
-        return sack;
     }
 
     @Spawns("part")
@@ -78,7 +79,7 @@ public class EntityManager implements EntityFactory {
 
     @Spawns("background")
     public Entity addBackground(SpawnData data) {
-        Image bgImage = image("forest.png");
+        Image bgImage = image(levelManager.getCurrentLevel().getProperties().getString("background"));
         return entityBuilder(data)
                 .view(new ScrollingBackgroundView(bgImage, getAppWidth(), getAppHeight()))
                 .zIndex(-1)
@@ -100,6 +101,7 @@ public class EntityManager implements EntityFactory {
                 .bbox(new HitBox(new Point2D(5,8), BoundingShape.circle(11)))
                 .with(physics)
                 .with(new StateComponent())
+                .with(new CollidableComponent(true))
                 .with(new ScalperComponent())
                 .build();
     }
@@ -138,8 +140,6 @@ public class EntityManager implements EntityFactory {
     private Texture getScaledTexture(double scale, Texture texture) {
         texture.setScaleX(scale);
         texture.setScaleY(scale);
-        texture.setTranslateX(texture.getWidth() * -scale);
-        texture.setTranslateY(texture.getHeight() * -scale);
         return texture;
     }
 }
