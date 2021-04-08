@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl:11.14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:win:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:15" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-core:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-io:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-profiles:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-ui:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-net:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-effects:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-animation:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-entity:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-ai:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-media:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-events:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-input:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-scene:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-minigames:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-achievement:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-cutscene:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-localization:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-time:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-trade:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.gluonhq.attach:lifecycle:4.0.9" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:modular:1.4.30" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.30" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-achievement:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-ai:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-animation:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-controllerinput:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-core:11.14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:15" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-logging:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-cutscene:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-effects:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-entity:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-events:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-input:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-io:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.gluonhq.attach:storage:4.0.9" level="project" />
+    <orderEntry type="library" name="Maven: com.gluonhq.attach:util:4.0.9" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-localization:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-logging:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-media:11.14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:15" level="project" />
+    <orderEntry type="library" name="Maven: com.gluonhq.attach:audio:4.0.9" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-minigames:11.14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:15" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:15" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-net:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-profiles:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-samples:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-controllerinput:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-scene:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-test:11.14" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-time:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-tools:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-trade:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-ui:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb.fxgl:fxgl-zdeploy:11.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.almasb:fxgl-samples:11.14" level="project" />
+  </component>
+</module>

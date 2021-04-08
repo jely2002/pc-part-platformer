@@ -45,10 +45,9 @@ public class mainMenu extends FXGLMenu {
 
 
         // Text Play
-        Text textOptions = FXGL.getUIFactoryService().newText("PLAY", Color.RED, FontType.GAME, setBackground(Color.BLUE), 24.0);
+        Text textOptions = FXGL.getUIFactoryService().newText("PLAY", Color.RED, FontType.GAME, 24.0);
         textOptions.setTranslateX((buttonPlay.getWidth() / 2) - (textOptions.getLayoutBounds().getWidth() / 2));
-//        textOptions.setTranslateY(buttonPlay.getTranslateY() + (buttonPlay.getHeight() / 2) - (textOptions.getLayoutBounds().getHeight() / 2));
-        textOptions.setTranslateY(buttonPlay.getTranslateY() + textOptions.getLayoutBounds().getHeight() );
+        textOptions.setTranslateY(buttonPlay.getTranslateY() + (buttonPlay.getHeight() / 2) + (textOptions.getLayoutBounds().getHeight() / 4) );
 
 
 
