@@ -39,7 +39,10 @@ public class gameMenu extends FXGLMenu {
         getContentRoot().setTranslateX(0);
         getContentRoot().setTranslateY(0);
 
-        ImageView imageView = new ImageView(new Image("assets/textures/forest.png"));
+        System.out.println(FXGL.getAppWidth());
+        System.out.println(FXGL.getAppHeight());
+
+        ImageView imageView = new ImageView(new Image("assets/textures/forest-overlay.png"));
 
         imageView.setFitWidth(FXGL.getAppWidth());
         imageView.setFitHeight(FXGL.getAppHeight());
@@ -120,20 +123,17 @@ public class gameMenu extends FXGLMenu {
         vBox.setSpacing(30);
 
         getContentRoot().getChildren().addAll(imageView, vBox);
-        FXGL.getWindowService().getOverlayRoot().setScaleX(0);
-        FXGL.getWindowService().getOverlayRoot().setScaleY(0);
         getContentRoot().setScaleX(0);
         getContentRoot().setScaleY(0);
 
         animation = FXGL.animationBuilder()
 
-                .duration(Duration.seconds(1.66))
+                .duration(Duration.seconds(1))
 
-                .interpolator(Interpolators.EXPONENTIAL.EASE_OUT())
-
+                .fade(getContentRoot())
                 .scale(getContentRoot())
 
-                .from(new Point2D(0, 0))
+                .from(new Point2D(1, 1))
 
                 .to(new Point2D(1, 1))
 
