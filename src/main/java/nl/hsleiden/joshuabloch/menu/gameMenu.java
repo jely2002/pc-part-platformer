@@ -13,7 +13,8 @@ import com.almasb.fxgl.ui.FontType;
 import com.sun.javafx.geom.BaseBounds;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Point2D;
-import javafx.scene.layout.BackgroundFill;
+import javafx.geometry.Pos;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -35,39 +36,33 @@ public class gameMenu extends FXGLMenu {
         super(menuType);
 
 
-        getContentRoot().setTranslateX(FXGL.getAppWidth() / 2.0 - SIZE);
-        getContentRoot().setTranslateY(FXGL.getAppHeight() / 2.0 - SIZE);
+        getContentRoot().setTranslateX(0);
+        getContentRoot().setTranslateY(0);
 
         ImageView imageView = new ImageView(new Image("assets/textures/forest.png"));
 
         imageView.setFitWidth(FXGL.getAppWidth());
         imageView.setFitHeight(FXGL.getAppHeight());
 
-//        imageView.setTranslateX();
-//        imageView.setTranslateY();
-
         // Button Resume
         var buttonResume = new Rectangle(SIZE*2, SIZE / 2);
         buttonResume.setStrokeWidth(2.5);
         buttonResume.strokeProperty().bind(Bindings.when(buttonResume.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
         buttonResume.fillProperty().bind(Bindings.when(buttonResume.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
-        buttonResume.setTranslateY(-50);
         buttonResume.setOnMouseClicked(e -> FXGL.getGameController().gotoPlay());
 
-        // Button Play
-        var buttonPlay = new Rectangle(SIZE*2, SIZE / 2);
-        buttonPlay.setStrokeWidth(2.5);
-        buttonPlay.strokeProperty().bind(Bindings.when(buttonPlay.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonPlay.fillProperty().bind(Bindings.when(buttonPlay.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
-        buttonPlay.setTranslateY(50);
-        buttonPlay.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
+        // Button Restart
+        var buttonRestart = new Rectangle(SIZE*2, SIZE / 2);
+        buttonRestart.setStrokeWidth(2.5);
+        buttonRestart.strokeProperty().bind(Bindings.when(buttonRestart.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
+        buttonRestart.fillProperty().bind(Bindings.when(buttonRestart.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonRestart.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
 
         // Button MainMenu
         var buttonMainMenu = new Rectangle(SIZE*2, SIZE / 2);
         buttonMainMenu.setStrokeWidth(2.5);
         buttonMainMenu.strokeProperty().bind(Bindings.when(buttonMainMenu.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
         buttonMainMenu.fillProperty().bind(Bindings.when(buttonMainMenu.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
-        buttonMainMenu.setTranslateY(150);
         buttonMainMenu.setOnMouseClicked(e -> FXGL.getGameController().gotoMainMenu());
 
         // Button Quit
@@ -75,42 +70,56 @@ public class gameMenu extends FXGLMenu {
         buttonQuit.setStrokeWidth(2.5);
         buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
         buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
-        buttonQuit.setTranslateY(250);
         buttonQuit.setOnMouseClicked(e -> FXGL.getGameController().exit());
 
-        // Text Play
+        // Text Resume
         Text textResume = FXGL.getUIFactoryService().newText("RESUME", Color.RED, FontType.GAME, 24.0);
         textResume.setTextAlignment(TextAlignment.CENTER);
-        textResume.setWrappingWidth(buttonResume.getWidth());
-        textResume.setTranslateY(buttonResume.getTranslateY() + (buttonResume.getHeight() / 2) + (textResume.getLayoutBounds().getHeight() / 4) );
 
-        // Text Play
-        Text textPlay = FXGL.getUIFactoryService().newText("RESTART LEVEL", Color.RED, FontType.GAME, 24.0);
-        textPlay.setTextAlignment(TextAlignment.CENTER);
-        textPlay.setWrappingWidth(buttonPlay.getWidth());
-        textPlay.setTranslateY(buttonPlay.getTranslateY() + (buttonPlay.getHeight() / 2) + (textPlay.getLayoutBounds().getHeight() / 4) );
+        // Text Restart
+        Text textRestart = FXGL.getUIFactoryService().newText("RESTART LEVEL", Color.RED, FontType.GAME, 24.0);
+        textRestart.setTextAlignment(TextAlignment.CENTER);
 
         // Text mainMenu
         Text textMainMenu = FXGL.getUIFactoryService().newText("BACK TO MENU", Color.RED, FontType.GAME, 24.0);
         textMainMenu.setTextAlignment(TextAlignment.CENTER);
-        textMainMenu.setWrappingWidth(buttonMainMenu.getWidth());
-        textMainMenu.setTranslateY(buttonMainMenu.getTranslateY() + (buttonMainMenu.getHeight() / 2) + (textMainMenu.getLayoutBounds().getHeight() / 4) );
 
         // Text Quit
         Text textQuit = FXGL.getUIFactoryService().newText("QUIT", Color.RED, FontType.GAME, 24.0);
         textQuit.setTextAlignment(TextAlignment.CENTER);
-        textQuit.setWrappingWidth(buttonQuit.getWidth());
-        textQuit.setTranslateY(buttonQuit.getTranslateY() + (buttonQuit.getHeight() / 2) + (textQuit.getLayoutBounds().getHeight() / 4) );
 
         textResume.setMouseTransparent(true);
-        textPlay.setMouseTransparent(true);
+        textRestart.setMouseTransparent(true);
         textMainMenu.setMouseTransparent(true);
         textQuit.setMouseTransparent(true);
 
 
+        // StackPane Resume
+        StackPane resumePane = new StackPane();
+        resumePane.getChildren().addAll(buttonResume, textResume);
 
-        FXGL.getWindowService().getOverlayRoot().getChildren().addAll(imageView);
-        getContentRoot().getChildren().addAll(buttonPlay, textPlay, buttonQuit, textQuit, buttonMainMenu, textMainMenu, buttonResume, textResume);
+        // StackPane Restart
+        StackPane restartPane = new StackPane();
+        restartPane.getChildren().addAll(buttonRestart, textRestart);
+
+        // StackPane Menu
+        StackPane menuPane = new StackPane();
+        menuPane.getChildren().addAll(buttonMainMenu, textMainMenu);
+
+        // StackPane Quit
+        StackPane quitPane = new StackPane();
+        quitPane.getChildren().addAll(buttonQuit, textQuit);
+
+
+
+        VBox vBox = new VBox();
+        vBox.setPrefWidth(FXGL.getAppWidth());
+        vBox.setPrefHeight(FXGL.getAppHeight());
+        vBox.setAlignment(Pos.CENTER);
+        vBox.getChildren().addAll(resumePane, restartPane, menuPane, quitPane);
+        vBox.setSpacing(30);
+
+        getContentRoot().getChildren().addAll(imageView, vBox);
         FXGL.getWindowService().getOverlayRoot().setScaleX(0);
         FXGL.getWindowService().getOverlayRoot().setScaleY(0);
         getContentRoot().setScaleX(0);
@@ -123,7 +132,6 @@ public class gameMenu extends FXGLMenu {
                 .interpolator(Interpolators.EXPONENTIAL.EASE_OUT())
 
                 .scale(getContentRoot())
-                .scale(FXGL.getWindowService().getOverlayRoot())
 
                 .from(new Point2D(0, 0))
 
