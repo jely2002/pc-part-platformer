@@ -125,7 +125,7 @@ public class Main extends GameApplication {
     protected void initGame() {
         getGameWorld().addEntityFactory(new EntityManager());
 
-        Level level = setLevelFromMap("tmx/level_2.tmx");
+        Level level = setLevelFromMap("tmx/level_3.tmx");
 
         player = spawn("player", 50, 50);
 
