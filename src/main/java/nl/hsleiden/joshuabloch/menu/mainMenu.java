@@ -96,75 +96,87 @@ public class mainMenu extends FXGLMenu {
 
         // Button Level 1
         buttonLevel1 = new Rectangle(SIZE, 60);
-        buttonLevel1.setStrokeWidth(2.5);
-        buttonLevel1.strokeProperty().bind(Bindings.when(buttonLevel1.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonLevel1.fillProperty().bind(Bindings.when(buttonLevel1.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonLevel1.setStrokeWidth(4);
+        buttonLevel1.setArcHeight(15);
+        buttonLevel1.setArcWidth(15);
+        buttonLevel1.strokeProperty().bind(Bindings.when(buttonLevel1.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel1.fillProperty().bind(Bindings.when(buttonLevel1.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonLevel1.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());       // Level spelen
 
         // Button Level 2
         buttonLevel2 = new Rectangle(SIZE, 60);
-        buttonLevel2.setStrokeWidth(2.5);
-        buttonLevel2.strokeProperty().bind(Bindings.when(buttonLevel2.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonLevel2.fillProperty().bind(Bindings.when(buttonLevel2.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonLevel2.setStrokeWidth(4);
+        buttonLevel2.setArcHeight(15);
+        buttonLevel2.setArcWidth(15);
+        buttonLevel2.strokeProperty().bind(Bindings.when(buttonLevel2.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel2.fillProperty().bind(Bindings.when(buttonLevel2.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonLevel2.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
 
         // Button Level 3
         buttonLevel3 = new Rectangle(SIZE, 60);
-        buttonLevel3.setStrokeWidth(2.5);
-        buttonLevel3.strokeProperty().bind(Bindings.when(buttonLevel3.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonLevel3.fillProperty().bind(Bindings.when(buttonLevel3.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonLevel3.setStrokeWidth(4);
+        buttonLevel3.setArcHeight(15);
+        buttonLevel3.setArcWidth(15);
+        buttonLevel3.strokeProperty().bind(Bindings.when(buttonLevel3.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel3.fillProperty().bind(Bindings.when(buttonLevel3.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonLevel3.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
 
         // Button Level 4
         buttonLevel4 = new Rectangle(SIZE, 60);
-        buttonLevel4.setStrokeWidth(2.5);
-        buttonLevel4.strokeProperty().bind(Bindings.when(buttonLevel4.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonLevel4.fillProperty().bind(Bindings.when(buttonLevel4.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonLevel4.setStrokeWidth(4);
+        buttonLevel4.setArcHeight(15);
+        buttonLevel4.setArcWidth(15);
+        buttonLevel4.strokeProperty().bind(Bindings.when(buttonLevel4.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel4.fillProperty().bind(Bindings.when(buttonLevel4.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonLevel4.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
 
 
         // Button login
         var buttonLogin = new Rectangle(SIZE, 60);
-        buttonLogin.setStrokeWidth(2.5);
-        buttonLogin.strokeProperty().bind(Bindings.when(buttonLogin.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonLogin.fillProperty().bind(Bindings.when(buttonLogin.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonLogin.setStrokeWidth(4);
+        buttonLogin.setArcHeight(15);
+        buttonLogin.setArcWidth(15);
+        buttonLogin.strokeProperty().bind(Bindings.when(buttonLogin.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLogin.fillProperty().bind(Bindings.when(buttonLogin.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonLogin.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
 
         // Button Quit
         var buttonQuit = new Rectangle(SIZE, 60);
-        buttonQuit.setStrokeWidth(2.5);
-        buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.YELLOW).otherwise(Color.BLACK));
-        buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.YELLOW).otherwise(Color.color(0.1, 0.05, 0.0, 0.75)));
+        buttonQuit.setStrokeWidth(4);
+        buttonQuit.setArcHeight(15);
+        buttonQuit.setArcWidth(15);
+        buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonQuit.setOnMouseClicked(e -> FXGL.getGameController().exit());
 
 
 
 
         // Text Level 1
-        Text textLevel1 = FXGL.getUIFactoryService().newText("LEVEL 1", Color.RED, FontType.GAME, 24.0);
+        Text textLevel1 = FXGL.getUIFactoryService().newText("LEVEL 1", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textLevel1.setTextAlignment(TextAlignment.CENTER);
 
 
         // Text Level 2
-        Text textLevel2 = FXGL.getUIFactoryService().newText("LEVEL 2", Color.RED, FontType.GAME, 24.0);
+        Text textLevel2 = FXGL.getUIFactoryService().newText("LEVEL 2", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textLevel2.setTextAlignment(TextAlignment.CENTER);
 
         // Text Level 3
-        Text textLevel3 = FXGL.getUIFactoryService().newText("LEVEL 3", Color.RED, FontType.GAME, 24.0);
+        Text textLevel3 = FXGL.getUIFactoryService().newText("LEVEL 3", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textLevel3.setTextAlignment(TextAlignment.CENTER);
 
         // Text Level 4
-        Text textLevel4 = FXGL.getUIFactoryService().newText("LEVEL 4", Color.RED, FontType.GAME, 24.0);
+        Text textLevel4 = FXGL.getUIFactoryService().newText("LEVEL 4", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textLevel4.setTextAlignment(TextAlignment.CENTER);
 
         // Text Login
-        Text textLogin = FXGL.getUIFactoryService().newText("LOGIN", Color.RED, FontType.GAME, 24.0);
+        Text textLogin = FXGL.getUIFactoryService().newText("LOGIN", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textLogin.setTextAlignment(TextAlignment.CENTER);
 //        textLogin.setWrappingWidth(buttonLogin.getWidth());
 //        textLogin.setTranslateY(buttonLogin.getTranslateY() + (buttonLogin.getHeight() / 2) + (textLogin.getLayoutBounds().getHeight() / 4) );
 
         // Text Quit
-        Text textQuit = FXGL.getUIFactoryService().newText("QUIT", Color.RED, FontType.GAME, 24.0);
+        Text textQuit = FXGL.getUIFactoryService().newText("QUIT", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textQuit.setTextAlignment(TextAlignment.CENTER);
 
 
