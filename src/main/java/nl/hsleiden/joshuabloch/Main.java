@@ -125,14 +125,14 @@ public class Main extends GameApplication {
     protected void initGame() {
         getGameWorld().addEntityFactory(new EntityManager());
 
-        Level level = setLevelFromMap("tmx/example_level.tmx");
+        Level level = setLevelFromMap("tmx/level_2.tmx");
 
         player = spawn("player", 50, 50);
 
         spawn("background");
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(-1500, 0, 100 * 32, getAppHeight());
+        viewport.setBounds(-1500, 0, 130 * 32, getAppHeight());
         viewport.bindToEntity(player, getAppWidth() / 2f, getAppHeight() /2f);
         viewport.setLazy(true);
     }
