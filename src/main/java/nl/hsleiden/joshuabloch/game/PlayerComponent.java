@@ -33,12 +33,12 @@ public class PlayerComponent extends Component implements Moveable {
         texture = new AnimatedTexture(still);
         walkTimer = FXGL.newLocalTimer();
         invincibleTimer = FXGL.newLocalTimer();
+        invincibleTimer.capture();
     }
 
     @Override
     public void onAdded() {
         walkTimer.capture();
-        invincibleTimer.capture();
 
         entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
         entity.getViewComponent().addChild(texture);
