@@ -2,7 +2,6 @@ package nl.hsleiden.joshuabloch;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.MenuItem;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.core.serialization.Bundle;
 import com.almasb.fxgl.entity.Entity;
@@ -14,8 +13,8 @@ import javafx.scene.input.KeyCode;
 import nl.hsleiden.joshuabloch.game.EntityManager;
 import nl.hsleiden.joshuabloch.game.EntityType;
 import nl.hsleiden.joshuabloch.game.PlayerComponent;
+import nl.hsleiden.joshuabloch.menu.MySceneFactory;
 
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +38,7 @@ public class Main extends GameApplication {
         settings.setTitle("PC builder : 2021");
         settings.setVersion("1.0");
         settings.setMainMenuEnabled(true);
-        settings.setEnabledMenuItems(EnumSet.allOf(MenuItem.class));
+        settings.setSceneFactory(new MySceneFactory());
         settings.setFullScreenAllowed(true);
         settings.setDeveloperMenuEnabled(true);
     }
@@ -48,32 +47,6 @@ public class Main extends GameApplication {
     protected void onPreInit() {
         scoreCounter = new ScoreCounter();
         levelManager = new LevelManager();
-        /*getSaveLoadService().addHandler(new SaveLoadHandler() {
-            @Override
-            public void onSave(DataFile data) {
-                // create a new bundle to store your data
-                Bundle bundle = new Bundle("username");
-
-                // store some data
-                int progress = geti("progress");
-                bundle.put("progress", progress);
-
-                // give the bundle to data file
-                data.putBundle(bundle);
-            }
-
-            @Override
-            public void onLoad(DataFile data) {
-                // get your previously saved bundle
-                var bundle = data.getBundle("username");
-
-                // retrieve some data
-                double time = bundle.get("time");
-
-                // update your game with saved data
-                set("time", time);
-            }
-        });*/
     }
 
     @Override
