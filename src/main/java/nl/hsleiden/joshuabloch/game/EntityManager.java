@@ -35,7 +35,7 @@ public class EntityManager implements EntityFactory {
 
         return entityBuilder(data)
                 .type(EntityType.COIN)
-                .viewWithBBox(getScaledTexture(0.5, texture))
+                .viewWithBBox(getScaledTexture(1, texture))
                 .with(new CollidableComponent(true))
                 .with(lift)
                 .build();
@@ -43,15 +43,15 @@ public class EntityManager implements EntityFactory {
 
     @Spawns("sack")
     public Entity addSack(SpawnData data) {
-        Texture texture = texture("coin.png"); //TODO replace for a sack image
+        Texture texture = texture("sack.png");
 
         Entity sack = entityBuilder(data)
                 .type(EntityType.SACK)
-                .viewWithBBox(getScaledTexture(0.5, texture))
+                .viewWithBBox(texture)
                 .with(new CollidableComponent(true))
                 .build();
 
-        sack.getTransformComponent().setScaleOrigin(new Point2D(sack.getWidth() / 4, sack.getHeight() / 4));
+        //sack.getTransformComponent().setScaleOrigin(new Point2D(sack.getWidth() / 4, sack.getHeight() / 4));
         FXGL.animationBuilder()
                 .interpolator(Interpolators.SMOOTH.EASE_IN_OUT())
                 .duration(Duration.seconds(2))

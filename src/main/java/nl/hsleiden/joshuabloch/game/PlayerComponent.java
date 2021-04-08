@@ -62,8 +62,8 @@ public class PlayerComponent extends Component implements Moveable {
     }
 
     private void respawn() {
-        Entity closestPlatform = FXGL.getGameWorld().getClosestEntity(entity, e -> e.getType() == EntityType.PLATFORM).stream().findFirst().orElse(null);
-        physics.overwritePosition(new Point2D(closestPlatform.getX() + 10, 50));
+        //Entity closestPlatform = FXGL.getGameWorld().getClosestEntity(entity, e -> e.getType() == EntityType.PLATFORM).stream().findFirst().orElse(null);
+        physics.overwritePosition(new Point2D(50, 50));
         physics.setVelocityX(0);
         entity.getViewComponent().setOpacity(0);
         invincibleTimer.capture();

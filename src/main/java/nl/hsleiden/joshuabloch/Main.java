@@ -43,6 +43,7 @@ public class Main extends GameApplication {
         settings.setMainMenuEnabled(true);
         settings.setEnabledMenuItems(EnumSet.allOf(MenuItem.class));
         settings.setFullScreenAllowed(true);
+        settings.setDeveloperMenuEnabled(true);
     }
 
     @Override
@@ -124,16 +125,14 @@ public class Main extends GameApplication {
     protected void initGame() {
         getGameWorld().addEntityFactory(new EntityManager());
 
-        Level level = setLevelFromMap("tmx/level2.tmx");
+        Level level = setLevelFromMap("tmx/example_level.tmx");
 
-        System.out.println(level.getProperties().getString("menuName"));
-
-        player = spawn("player", 550, 50);
+        player = spawn("player", 50, 50);
 
         spawn("background");
 
         Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(-1500, 0, 250 * 70, getAppHeight());
+        viewport.setBounds(-1500, 0, 100 * 32, getAppHeight());
         viewport.bindToEntity(player, getAppWidth() / 2f, getAppHeight() /2f);
         viewport.setLazy(true);
     }
