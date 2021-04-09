@@ -8,13 +8,16 @@ import com.almasb.fxgl.core.util.EmptyRunnable;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.FontType;
 import javafx.beans.binding.Bindings;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -33,6 +36,8 @@ public class MainMenu extends FXGLMenu {
     private final Text highScoreLevel2;
     private final Text highScoreLevel3;
     private final Text highScoreLevel4;
+    private boolean mutedVolume = true;
+    private ImageView speakerView = new ImageView(new Image("assets/textures/speakers.png"));
 
     private final LevelManager levelManager;
 
@@ -160,6 +165,40 @@ public class MainMenu extends FXGLMenu {
         buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonQuit.setOnMouseClicked(e -> FXGL.getGameController().exit());
 
+        // Button Mute
+        var buttonMute = new Circle();
+        buttonMute.setCenterX(100);
+        buttonMute.setCenterY(100);
+        buttonMute.setRadius(30);
+        buttonMute.strokeProperty().bind(Bindings.when(buttonMute.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonMute.fillProperty().bind(Bindings.when(buttonMute.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+
+
+
+
+        buttonMute.setOnMouseClicked(e -> {
+
+            // Geluid uitzetten
+            if (!mutedVolume) {
+                this.speakerView.setImage(new Image("assets/textures/speakers.png"));
+                FXGL.getSettings().setGlobalSoundVolume(100);
+                mutedVolume = true;
+
+            }
+
+            // Geluid aanzetten
+            else {
+                this.speakerView.setImage(new Image("assets/textures/mute.png"));
+                FXGL.getSettings().setGlobalSoundVolume(0);
+                mutedVolume = false;
+            }
+
+        });
+
+
+        speakerView.setFitWidth(30);
+        speakerView.setPreserveRatio(true);
+
 
         // Text Level 1
         Text textLevel1 = FXGL.getUIFactoryService().newText("LEVEL 1", Color.web("9db379",1.0), FontType.GAME, 24.0);
@@ -225,6 +264,13 @@ public class MainMenu extends FXGLMenu {
         StackPane quitPane = new StackPane();
         quitPane.getChildren().addAll(buttonQuit, textQuit);
 
+        // StackPane Mute
+        StackPane mutePane = new StackPane();
+        mutePane.getChildren().addAll(buttonMute, speakerView);
+        mutePane.setTranslateX(FXGL.getAppWidth() - buttonMute.getLayoutBounds().getWidth() - 10);
+        mutePane.setTranslateY(FXGL.getAppHeight() - buttonMute.getLayoutBounds().getHeight() - 10);
+
+
 
         // HBox Level1
         HBox hBoxLevel1 = new HBox();
@@ -271,6 +317,7 @@ public class MainMenu extends FXGLMenu {
         textLevel4.setMouseTransparent(true);
         textLogin.setMouseTransparent(true);
         textQuit.setMouseTransparent(true);
+        speakerView.setMouseTransparent(true);
 
         // Create VBoxMenu
         VBox vBoxMain = new VBox();
@@ -281,23 +328,52 @@ public class MainMenu extends FXGLMenu {
         vBoxMain.getChildren().addAll(hBoxLevel1, hBoxLevel2, hBoxLevel3, hBoxLevel4, hBoxLogin, hBoxQuit);
         vBoxMain.setSpacing(30);
 
+        // PC-builder logo
+        ImageView logoView = new ImageView(new Image("assets/textures/logo-pc-builder.png"));
+        logoView.setFitWidth(550);
+        logoView.setPreserveRatio(true);
+        logoView.setX(600);
+        logoView.setY(100);
 
-        // Create VBoxLogo
-//        VBox vBoxLogo = new VBox();
-//        vBoxLogo.setPrefHeight(FXGL.getAppHeight());
-//        vBoxLogo.setPrefWidth(FXGL.getAppWidth());
-//        vBoxLogo.setAlignment(Pos.CENTER_RIGHT);
-//        vBoxLogo.setLayoutX(300);
-//        vBoxLogo.setMargin(hBoxLogin, new Insets(60,0,0,0));
-//        vBoxLogo.getChildren().addAll(logo);
-//        vBoxLogo.setSpacing(30);
-//
-//        HBox hBoxMenu = new HBox();
-//        hBoxMenu.getChildren().addAll(vBoxMain, vBoxLogo);
+        // GPU Picture under logo
+        ImageView logoViewGPU = new ImageView(new Image("assets/textures/gpu.png"));
+        logoViewGPU.setFitWidth(250);
+        logoViewGPU.setPreserveRatio(true);
+        logoViewGPU.setX(750);
+        logoViewGPU.setY(250);
 
         lockButtons(levelManager.levelProgress);
+        getContentRoot().getChildren().addAll(imageView, logoView, logoViewGPU, vBoxMain, mutePane);
+        getContentRoot().setScaleX(0);
+        getContentRoot().setScaleY(0);
 
-        getContentRoot().getChildren().addAll(imageView, vBoxMain);
+        animation = FXGL.animationBuilder()
 
+                .duration(Duration.seconds(0.66))
+
+                .interpolator(Interpolators.EXPONENTIAL.EASE_OUT())
+
+                .scale(getContentRoot())
+
+                .from(new Point2D(0, 0))
+
+                .to(new Point2D(1, 1))
+
+                .build();
+
+    }
+
+    @Override
+    public void onCreate() {
+        animation.setOnFinished(EmptyRunnable.INSTANCE);
+        animation.stop();
+        animation.start();
+
+    }
+
+
+    @Override
+    protected void onUpdate(double tpf) {
+        animation.onUpdate(tpf);
     }
 }
