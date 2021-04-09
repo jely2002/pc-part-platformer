@@ -4,7 +4,7 @@
   <property name="background" value="snow_background.png"/>
   <property name="cost" value="28"/>
  </properties>
- <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="13" columns="0">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="22" columns="0"> //13
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="32" height="32" source="Dirt.png"/>

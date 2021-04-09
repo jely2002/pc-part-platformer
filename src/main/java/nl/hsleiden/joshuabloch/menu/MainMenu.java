@@ -28,7 +28,6 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class MainMenu extends FXGLMenu {
     private static final int SIZE = 250;
-    private final Animation<?> animation;
     private final Rectangle buttonLevel1;
     private final Rectangle buttonLevel2;
     private final Rectangle buttonLevel3;
@@ -148,12 +147,14 @@ public class MainMenu extends FXGLMenu {
         buttonLogin.setArcWidth(15);
         buttonLogin.strokeProperty().bind(Bindings.when(buttonLogin.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonLogin.fillProperty().bind(Bindings.when(buttonLogin.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonLogin.setOnMouseClicked(e -> getDialogService().showInputBox("Please enter your name:", answer -> levelManager.setName(answer, c -> {
-            textLogin.setText("LOGGED IN");
-            lockButtons(levelManager.levelProgress);
-            showHighscores();
-            return null;
-        })));
+        buttonLogin.setOnMouseClicked(e -> getDialogService().showInputBox("Please enter your name:", answer -> {
+            levelManager.setName(answer.toLowerCase(), c -> {
+                textLogin.setText("LOGGED IN");
+                lockButtons(levelManager.levelProgress);
+                showHighscores();
+                return null;
+            });
+        }));
 
         // Button Quit
         var buttonQuit = new Rectangle(SIZE, 60);
@@ -222,19 +223,19 @@ public class MainMenu extends FXGLMenu {
 
 
         // HighScore Level 1
-        highScoreLevel1 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel1 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel1.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 2
-        highScoreLevel2 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel2 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel2.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 3
-        highScoreLevel3 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel3 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel3.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 4
-        highScoreLevel4 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel4 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel4.setTextAlignment(TextAlignment.CENTER);
 
 
