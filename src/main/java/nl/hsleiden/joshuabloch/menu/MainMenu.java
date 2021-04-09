@@ -103,8 +103,8 @@ public class MainMenu extends FXGLMenu {
         buttonLevel1.setStrokeWidth(4);
         buttonLevel1.setArcHeight(15);
         buttonLevel1.setArcWidth(15);
-        buttonLevel1.strokeProperty().bind(Bindings.when(buttonLevel1.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonLevel1.fillProperty().bind(Bindings.when(buttonLevel1.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel1.strokeProperty().bind(Bindings.when(buttonLevel1.hoverProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
+        buttonLevel1.fillProperty().bind(Bindings.when(buttonLevel1.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
         buttonLevel1.setOnMouseClicked(e -> levelManager.start(0));       // Level spelen
 
         // Button Level 2
@@ -112,8 +112,8 @@ public class MainMenu extends FXGLMenu {
         buttonLevel2.setStrokeWidth(4);
         buttonLevel2.setArcHeight(15);
         buttonLevel2.setArcWidth(15);
-        buttonLevel2.strokeProperty().bind(Bindings.when(buttonLevel2.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonLevel2.fillProperty().bind(Bindings.when(buttonLevel2.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel2.strokeProperty().bind(Bindings.when(buttonLevel2.hoverProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
+        buttonLevel2.fillProperty().bind(Bindings.when(buttonLevel2.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
         buttonLevel2.setOnMouseClicked(e -> levelManager.start(1));
 
         // Button Level 3
@@ -121,8 +121,8 @@ public class MainMenu extends FXGLMenu {
         buttonLevel3.setStrokeWidth(4);
         buttonLevel3.setArcHeight(15);
         buttonLevel3.setArcWidth(15);
-        buttonLevel3.strokeProperty().bind(Bindings.when(buttonLevel3.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonLevel3.fillProperty().bind(Bindings.when(buttonLevel3.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel3.strokeProperty().bind(Bindings.when(buttonLevel3.hoverProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
+        buttonLevel3.fillProperty().bind(Bindings.when(buttonLevel3.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
         buttonLevel3.setOnMouseClicked(e -> levelManager.start(2));
 
         // Button Level 4
@@ -130,12 +130,12 @@ public class MainMenu extends FXGLMenu {
         buttonLevel4.setStrokeWidth(4);
         buttonLevel4.setArcHeight(15);
         buttonLevel4.setArcWidth(15);
-        buttonLevel4.strokeProperty().bind(Bindings.when(buttonLevel4.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonLevel4.fillProperty().bind(Bindings.when(buttonLevel4.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLevel4.strokeProperty().bind(Bindings.when(buttonLevel4.hoverProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
+        buttonLevel4.fillProperty().bind(Bindings.when(buttonLevel4.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
         buttonLevel4.setOnMouseClicked(e -> levelManager.start(3));
 
         // Text Login
-        Text textLogin = FXGL.getUIFactoryService().newText(levelManager.getName() == null ? "PLEASE LOGIN" : "LOGGED IN", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        Text textLogin = FXGL.getUIFactoryService().newText(levelManager.getName() == null ? "PLEASE LOGIN" : "LOGGED IN", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         textLogin.setTextAlignment(TextAlignment.CENTER);
 //        textLogin.setWrappingWidth(buttonLogin.getWidth());
 //        textLogin.setTranslateY(buttonLogin.getTranslateY() + (buttonLogin.getHeight() / 2) + (textLogin.getLayoutBounds().getHeight() / 4) );
@@ -145,8 +145,8 @@ public class MainMenu extends FXGLMenu {
         buttonLogin.setStrokeWidth(4);
         buttonLogin.setArcHeight(15);
         buttonLogin.setArcWidth(15);
-        buttonLogin.strokeProperty().bind(Bindings.when(buttonLogin.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonLogin.fillProperty().bind(Bindings.when(buttonLogin.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonLogin.strokeProperty().bind(Bindings.when(buttonLogin.hoverProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
+        buttonLogin.fillProperty().bind(Bindings.when(buttonLogin.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
         buttonLogin.setOnMouseClicked(e -> getDialogService().showInputBox("Please enter your name:", answer -> {
             levelManager.setName(answer.toLowerCase(), c -> {
                 textLogin.setText("LOGGED IN");
@@ -161,8 +161,8 @@ public class MainMenu extends FXGLMenu {
         buttonQuit.setStrokeWidth(4);
         buttonQuit.setArcHeight(15);
         buttonQuit.setArcWidth(15);
-        buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
+        buttonQuit.strokeProperty().bind(Bindings.when(buttonQuit.hoverProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
+        buttonQuit.fillProperty().bind(Bindings.when(buttonQuit.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
         buttonQuit.setOnMouseClicked(e -> FXGL.getGameController().exit());
 
         // Button Mute
@@ -170,10 +170,8 @@ public class MainMenu extends FXGLMenu {
         buttonMute.setCenterX(100);
         buttonMute.setCenterY(100);
         buttonMute.setRadius(30);
-        buttonMute.strokeProperty().bind(Bindings.when(buttonMute.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonMute.fillProperty().bind(Bindings.when(buttonMute.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-
-
+        buttonMute.strokeProperty().bind(Bindings.when(buttonMute.hoverProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
+        buttonMute.fillProperty().bind(Bindings.when(buttonMute.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
 
 
         buttonMute.setOnMouseClicked(e -> {
@@ -201,43 +199,42 @@ public class MainMenu extends FXGLMenu {
 
 
         // Text Level 1
-        Text textLevel1 = FXGL.getUIFactoryService().newText("LEVEL 1", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        Text textLevel1 = FXGL.getUIFactoryService().newText("LEVEL 1", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         textLevel1.setTextAlignment(TextAlignment.CENTER);
 
 
         // Text Level 2
-        Text textLevel2 = FXGL.getUIFactoryService().newText("LEVEL 2", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        Text textLevel2 = FXGL.getUIFactoryService().newText("LEVEL 2", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         textLevel2.setTextAlignment(TextAlignment.CENTER);
 
         // Text Level 3
-        Text textLevel3 = FXGL.getUIFactoryService().newText("LEVEL 3", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        Text textLevel3 = FXGL.getUIFactoryService().newText("LEVEL 3", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         textLevel3.setTextAlignment(TextAlignment.CENTER);
 
         // Text Level 4
-        Text textLevel4 = FXGL.getUIFactoryService().newText("LEVEL 4", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        Text textLevel4 = FXGL.getUIFactoryService().newText("LEVEL 4", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         textLevel4.setTextAlignment(TextAlignment.CENTER);
 
         // Text Quit
-        Text textQuit = FXGL.getUIFactoryService().newText("QUIT", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        Text textQuit = FXGL.getUIFactoryService().newText("QUIT", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         textQuit.setTextAlignment(TextAlignment.CENTER);
 
 
         // HighScore Level 1
-        highScoreLevel1 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        highScoreLevel1 = FXGL.getUIFactoryService().newText("", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         highScoreLevel1.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 2
-        highScoreLevel2 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        highScoreLevel2 = FXGL.getUIFactoryService().newText("", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         highScoreLevel2.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 3
-        highScoreLevel3 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        highScoreLevel3 = FXGL.getUIFactoryService().newText("", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         highScoreLevel3.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 4
-        highScoreLevel4 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
+        highScoreLevel4 = FXGL.getUIFactoryService().newText("", Color.web("9db379", 1.0), FontType.GAME, 24.0);
         highScoreLevel4.setTextAlignment(TextAlignment.CENTER);
-
 
 
         // StackPane Level1
@@ -269,7 +266,6 @@ public class MainMenu extends FXGLMenu {
         mutePane.getChildren().addAll(buttonMute, speakerView);
         mutePane.setTranslateX(FXGL.getAppWidth() - buttonMute.getLayoutBounds().getWidth() - 10);
         mutePane.setTranslateY(FXGL.getAppHeight() - buttonMute.getLayoutBounds().getHeight() - 10);
-
 
 
         // HBox Level1
@@ -324,7 +320,7 @@ public class MainMenu extends FXGLMenu {
         vBoxMain.setPrefHeight(FXGL.getAppHeight());
         vBoxMain.setAlignment(Pos.CENTER_LEFT);
         vBoxMain.setLayoutX(70);
-        VBox.setMargin(hBoxLogin, new Insets(60,0,0,0));
+        VBox.setMargin(hBoxLogin, new Insets(60, 0, 0, 0));
         vBoxMain.getChildren().addAll(hBoxLevel1, hBoxLevel2, hBoxLevel3, hBoxLevel4, hBoxLogin, hBoxQuit);
         vBoxMain.setSpacing(30);
 
@@ -346,34 +342,5 @@ public class MainMenu extends FXGLMenu {
         getContentRoot().getChildren().addAll(imageView, logoView, logoViewGPU, vBoxMain, mutePane);
         getContentRoot().setScaleX(0);
         getContentRoot().setScaleY(0);
-
-        animation = FXGL.animationBuilder()
-
-                .duration(Duration.seconds(0.66))
-
-                .interpolator(Interpolators.EXPONENTIAL.EASE_OUT())
-
-                .scale(getContentRoot())
-
-                .from(new Point2D(0, 0))
-
-                .to(new Point2D(1, 1))
-
-                .build();
-
-    }
-
-    @Override
-    public void onCreate() {
-        animation.setOnFinished(EmptyRunnable.INSTANCE);
-        animation.stop();
-        animation.start();
-
-    }
-
-
-    @Override
-    protected void onUpdate(double tpf) {
-        animation.onUpdate(tpf);
     }
 }
