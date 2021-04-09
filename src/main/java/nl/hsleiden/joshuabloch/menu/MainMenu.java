@@ -183,19 +183,19 @@ public class MainMenu extends FXGLMenu {
 
 
         // HighScore Level 1
-        highScoreLevel1 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel1 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel1.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 2
-        highScoreLevel2 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel2 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel2.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 3
-        highScoreLevel3 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel3 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel3.setTextAlignment(TextAlignment.CENTER);
 
         // HighScore Level 4
-        highScoreLevel4 = FXGL.getUIFactoryService().newText("", Color.RED, FontType.GAME, 24.0);
+        highScoreLevel4 = FXGL.getUIFactoryService().newText("", Color.web("9db379",1.0), FontType.GAME, 24.0);
         highScoreLevel4.setTextAlignment(TextAlignment.CENTER);
 
 
