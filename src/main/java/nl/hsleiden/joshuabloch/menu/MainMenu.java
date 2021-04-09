@@ -1,28 +1,23 @@
 package nl.hsleiden.joshuabloch.menu;
 
-import com.almasb.fxgl.animation.Animation;
-import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
-import com.almasb.fxgl.core.util.EmptyRunnable;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.FontType;
 import javafx.beans.binding.Bindings;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.util.Duration;
 import nl.hsleiden.joshuabloch.LevelManager;
+
+import java.security.NoSuchAlgorithmException;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -340,7 +335,5 @@ public class MainMenu extends FXGLMenu {
 
         lockButtons(levelManager.levelProgress);
         getContentRoot().getChildren().addAll(imageView, logoView, logoViewGPU, vBoxMain, mutePane);
-        getContentRoot().setScaleX(0);
-        getContentRoot().setScaleY(0);
     }
 }
