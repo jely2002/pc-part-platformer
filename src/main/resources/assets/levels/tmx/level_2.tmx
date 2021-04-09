@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="130" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="129">
  <properties>
-  <property name="background" value="snow_background.png"/>
+  <property name="background" value="sneeuw_level.png"/>
  </properties>
- <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="13" columns="0">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="22" columns="0"> //13
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="32" height="32" source="Dirt.png"/>
