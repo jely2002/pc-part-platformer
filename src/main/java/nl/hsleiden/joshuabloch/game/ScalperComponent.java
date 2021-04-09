@@ -21,7 +21,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 import static com.almasb.fxgl.dsl.FXGL.image;
-import static com.almasb.fxgl.dsl.FXGL.spawn;
 
 public class ScalperComponent extends Component implements Moveable {
 

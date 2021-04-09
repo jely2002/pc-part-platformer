@@ -18,14 +18,12 @@ public class ScoreCounter {
 
     private LocalTimer decrementTimer;
 
-    public ScoreCounter() {
-        decrementTimer = FXGL.newLocalTimer();
-        decrementTimer.capture();
-    }
-
     public void init() {
         createUIelements();
         registerListener();
+
+        decrementTimer = FXGL.newLocalTimer();
+        decrementTimer.capture();
     }
 
     public void increment(int change) {
@@ -42,6 +40,16 @@ public class ScoreCounter {
         } else {
             inc("coin", (int) decrementValue);
         }
+    }
+
+    public void showCost(int cost) {
+        Font font = getUIFactoryService().newFont(FontType.GAME, 24);
+        Text costText = new Text();
+        costText.setFont(font);
+        costText.setText("Part cost: " + cost);
+        costText.setTranslateY(80);
+        costText.setTranslateX(30);
+        getGameScene().addUINode(costText);
     }
 
     private void createUIelements() {
@@ -63,7 +71,6 @@ public class ScoreCounter {
     private void registerListener() {
         getGameWorld().getProperties().addListener("coin", (old, value) -> {
             int change = (int)value - (int) old;
-            System.out.println(change);
             Text changeText = getUIFactoryService().newText((change > 0 ? "+" : "") + change, change > 0 ? Color.GREEN : Color.RED, 28);
             changeText.setTranslateY(180);
             changeText.setTranslateX(30);
@@ -73,14 +80,14 @@ public class ScoreCounter {
                     .duration(Duration.seconds(3))
                     .autoReverse(true)
                     .translate(changeText)
-                    .from(new Point2D(30, 140))
-                    .to(new Point2D(30, 80))
+                    .from(new Point2D(30, 180))
+                    .to(new Point2D(30, 120))
                     .buildAndPlay();
             FXGL.animationBuilder()
                     .interpolator(Interpolators.SMOOTH.EASE_IN_OUT())
                     .delay(Duration.seconds(2))
                     .duration(Duration.seconds(2))
-                    .onCycleFinished(() -> { getGameScene().removeUINode(changeText); })
+                    .onCycleFinished(() -> getGameScene().removeUINode(changeText))
                     .autoReverse(true)
                     .fadeOut(changeText)
                     .buildAndPlay();

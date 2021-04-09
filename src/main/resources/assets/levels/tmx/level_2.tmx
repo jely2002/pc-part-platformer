@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="130" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="127">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="130" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="130">
  <properties>
   <property name="background" value="snow_background.png"/>
+  <property name="cost" value="28"/>
  </properties>
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="13" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
@@ -80,7 +81,11 @@
   </object>
   <object id="55" type="coin" x="1234.67" y="342.666" width="32" height="32"/>
   <object id="56" type="coin" x="669.334" y="305.333" width="32" height="32"/>
-  <object id="57" type="coin" x="560" y="350.667" width="32" height="32"/>
+  <object id="57" type="coin" x="560" y="350.667" width="32" height="32">
+   <properties>
+    <property name="special" value="polygon"/>
+   </properties>
+  </object>
   <object id="58" type="scalper" x="2924" y="343.333">
    <point/>
   </object>
@@ -101,7 +106,7 @@
   <object id="71" type="coin" x="2625.33" y="480" width="32" height="32"/>
   <object id="72" type="coin" x="2910.66" y="246.667" width="32" height="32"/>
   <object id="73" type="coin" x="2646.67" y="288" width="32" height="32"/>
-  <object id="77" type="sack" x="4061.33" y="600.001" width="32" height="32"/>
+  <object id="77" type="sack" x="4070.66" y="601.334" width="32" height="32"/>
   <object id="78" type="scalper" x="3509.33" y="664.666">
    <point/>
   </object>
@@ -151,5 +156,10 @@
   <object id="124" type="platform" x="2534.67" y="574.667" width="50.6667" height="16"/>
   <object id="125" type="platform" x="2621.33" y="509.333" width="33.3333" height="20"/>
   <object id="126" type="platform" x="3936" y="606.667" width="33.3333" height="17.3333"/>
+  <object id="129" type="part" x="4060" y="394.667" width="64" height="64">
+   <properties>
+    <property name="part-type" value="ram"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
