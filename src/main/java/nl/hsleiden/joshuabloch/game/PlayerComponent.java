@@ -1,9 +1,7 @@
 package nl.hsleiden.joshuabloch.game;
 
-import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.dsl.FXGL;
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -19,26 +17,27 @@ public class PlayerComponent extends Component implements Moveable {
 
     private PhysicsComponent physics;
     private final AnimatedTexture texture;
-    private final AnimationChannel walk, still;
-    private final LocalTimer walkTimer, invincibleTimer;
+    private final AnimationChannel walk, still, jump;
+    private LocalTimer walkTimer, jumpTimer;
     private int AVAILABLE_JUMPS = 2;
     private final int MAX_AVAILABLE_JUMPS = 2;
 
     public PlayerComponent() {
         Image animImage = image("player_anim.png");
 
-        still = new AnimationChannel(animImage, 8, 31, 28, Duration.seconds(1), 3, 3);
+        still = new AnimationChannel(animImage, 8, 31, 28, Duration.seconds(1), 0, 0);
         walk = new AnimationChannel(animImage, 8, 31, 28, Duration.seconds(0.66), 3, 6);
+        jump = new AnimationChannel(animImage, 8, 31, 28, Duration.seconds(0.66), 7, 7);
 
         texture = new AnimatedTexture(still);
-        walkTimer = FXGL.newLocalTimer();
-        invincibleTimer = FXGL.newLocalTimer();
-        invincibleTimer.capture();
     }
 
     @Override
     public void onAdded() {
+        walkTimer = FXGL.newLocalTimer();
         walkTimer.capture();
+        jumpTimer = FXGL.newLocalTimer();
+        jumpTimer.capture();
 
         entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
         entity.getViewComponent().addChild(texture);
@@ -52,7 +51,8 @@ public class PlayerComponent extends Component implements Moveable {
 
     @Override
     public void onUpdate(double tpf) {
-        if(entity.getPosition().getY() > 800) respawn(); //Remove the entity if it is knocked off a platform and falling forever
+        if(entity.getPosition().getY() > 800) respawn(); //Respawn the player if it is knocked off a platform and falling forever
+        if(!jumpTimer.elapsed(Duration.millis(700))) return;
         if(physics.isMovingX() && texture.getAnimationChannel() != walk && walkTimer.elapsed(Duration.seconds(1))) {
             walkTimer.capture();
             texture.loopAnimationChannel(walk);
@@ -65,23 +65,9 @@ public class PlayerComponent extends Component implements Moveable {
         //Entity closestPlatform = FXGL.getGameWorld().getClosestEntity(entity, e -> e.getType() == EntityType.PLATFORM).stream().findFirst().orElse(null);
         physics.overwritePosition(new Point2D(50, 50));
         physics.setVelocityX(0);
-        entity.getViewComponent().setOpacity(0);
-        invincibleTimer.capture();
-        if(geti("coin") > 0) inc("coin", -1); //TODO Change this penalty for falling out of the map to something reasonable
-        FXGL.animationBuilder()
-                .duration(Duration.seconds(0.4))
-                .interpolator(Interpolators.CUBIC.EASE_IN_OUT())
-                .delay(Duration.seconds(0.1))
-                .repeat(9)
-                .autoReverse(true)
-                .animate(entity.getViewComponent().opacityProperty())
-                .from(0)
-                .to(100)
-                .buildAndPlay();
-    }
-
-    public boolean isInvincible() {
-        return !invincibleTimer.elapsed(Duration.seconds(5));
+        physics.setVelocityY(0);
+        if(geti("coin") - 5 < 0) inc("coin", -5 - (geti("coin") - 5));
+        else inc("coin", -5);
     }
 
     public void moveLeft() {
@@ -98,10 +84,13 @@ public class PlayerComponent extends Component implements Moveable {
         if(AVAILABLE_JUMPS == 0) return;
         physics.setVelocityY(-FXGLMath.abs(velocity));
         AVAILABLE_JUMPS--;
+        jumpTimer.capture();
+        texture.loopAnimationChannel(jump);
 
         // Play SoundFX when jumped once
-        if(AVAILABLE_JUMPS == (MAX_AVAILABLE_JUMPS - 1)) FXGL.play("jump.wav");
-
+        if(AVAILABLE_JUMPS == (MAX_AVAILABLE_JUMPS - 1)) {
+            FXGL.play("jump.wav");
+        }
 
     }
 

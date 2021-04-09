@@ -1,8 +1,8 @@
 package nl.hsleiden.joshuabloch.game;
 
 public interface Moveable {
-    public void moveLeft();
-    public void moveRight();
-    public void jump(int velocity);
-    public void stopMovement();
+    void moveLeft();
+    void moveRight();
+    void jump(int velocity);
+    void stopMovement();
 }

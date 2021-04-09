@@ -1,48 +1,34 @@
 package nl.hsleiden.joshuabloch.menu;
 
 import com.almasb.fxgl.animation.Animation;
-import com.almasb.fxgl.animation.Interpolators;
-import com.almasb.fxgl.app.GameApplication;
-import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
-import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.core.util.EmptyRunnable;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.ui.FontType;
-import com.sun.javafx.geom.BaseBounds;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.awt.*;
-import java.security.cert.PolicyNode;
-
-public class gameMenu extends FXGLMenu {
+public class GameMenu extends FXGLMenu {
     private static final int SIZE = 150;
-    private Animation<?> animation;
+    private final Animation<?> animation;
 
-    public gameMenu(MenuType menuType) {
+    public GameMenu(MenuType menuType) {
         super(menuType);
-
 
         getContentRoot().setTranslateX(0);
         getContentRoot().setTranslateY(0);
 
-        System.out.println(FXGL.getAppWidth());
-        System.out.println(FXGL.getAppHeight());
-
-        ImageView imageView = new ImageView(new Image("assets/textures/forest-overlay.png"));
+        ImageView imageView = new ImageView(new Image("assets/textures/menu-overlay.png"));
 
         imageView.setFitWidth(FXGL.getAppWidth());
         imageView.setFitHeight(FXGL.getAppHeight());
@@ -50,7 +36,7 @@ public class gameMenu extends FXGLMenu {
         final int arcint = 15;
 
         // Button Resume
-        var buttonResume = new Rectangle(SIZE*2, SIZE / 2);
+        var buttonResume = new Rectangle(SIZE*2, SIZE / 2f);
         buttonResume.setStrokeWidth(4);
         buttonResume.setArcHeight(arcint);
         buttonResume.setArcWidth(arcint);
@@ -59,7 +45,7 @@ public class gameMenu extends FXGLMenu {
         buttonResume.setOnMouseClicked(e -> FXGL.getGameController().gotoPlay());
 
         // Button Restart
-        var buttonRestart = new Rectangle(SIZE*2, SIZE / 2);
+        var buttonRestart = new Rectangle(SIZE*2, SIZE / 2f);
         buttonRestart.setStrokeWidth(4);
         buttonRestart.setArcHeight(arcint);
         buttonRestart.setArcWidth(arcint);
@@ -68,7 +54,7 @@ public class gameMenu extends FXGLMenu {
         buttonRestart.setOnMouseClicked(e -> FXGL.getGameController().startNewGame());
 
         // Button MainMenu
-        var buttonMainMenu = new Rectangle(SIZE*2, SIZE / 2);
+        var buttonMainMenu = new Rectangle(SIZE*2, SIZE / 2f);
         buttonMainMenu.setStrokeWidth(4);
         buttonMainMenu.setArcHeight(arcint);
         buttonMainMenu.setArcWidth(arcint);
@@ -77,7 +63,7 @@ public class gameMenu extends FXGLMenu {
         buttonMainMenu.setOnMouseClicked(e -> FXGL.getGameController().gotoMainMenu());
 
         // Button Quit
-        var buttonQuit = new Rectangle(SIZE*2, SIZE / 2);
+        var buttonQuit = new Rectangle(SIZE*2, SIZE / 2f);
         buttonQuit.setStrokeWidth(4);
         buttonQuit.setArcHeight(arcint);
         buttonQuit.setArcWidth(arcint);

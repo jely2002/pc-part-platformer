@@ -1,8 +1,5 @@
 package nl.hsleiden.joshuabloch.game;
 
-import com.almasb.fxgl.animation.Interpolators;
-import com.almasb.fxgl.core.math.Vec2;
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.LiftComponent;
 import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
 import com.almasb.fxgl.entity.Entity;
@@ -68,8 +65,7 @@ public class EntityManager implements EntityFactory {
 
     @Spawns("part")
     public Entity addPart(SpawnData data) {
-        Texture texture = texture(data.get("part-type") + ".png");
-
+        Texture texture = texture(data.getData().get("part-type") + ".png");
         return entityBuilder(data)
                 .type(EntityType.PART)
                 .viewWithBBox(texture)
@@ -135,11 +131,5 @@ public class EntityManager implements EntityFactory {
                 .with(new IrremovableComponent())
                 .with(new PlayerComponent())
                 .build();
-    }
-
-    private Texture getScaledTexture(double scale, Texture texture) {
-        texture.setScaleX(scale);
-        texture.setScaleY(scale);
-        return texture;
     }
 }

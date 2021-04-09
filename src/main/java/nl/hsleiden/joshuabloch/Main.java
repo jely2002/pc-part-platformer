@@ -3,28 +3,23 @@ package nl.hsleiden.joshuabloch;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.Viewport;
-import com.almasb.fxgl.core.serialization.Bundle;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.profile.DataFile;
-import com.almasb.fxgl.profile.SaveLoadHandler;
+import com.almasb.fxgl.physics.PhysicsComponent;
 import javafx.scene.input.KeyCode;
-import nl.hsleiden.joshuabloch.game.EntityManager;
-import nl.hsleiden.joshuabloch.game.EntityType;
 import nl.hsleiden.joshuabloch.game.PlayerComponent;
-import nl.hsleiden.joshuabloch.menu.MySceneFactory;
+import nl.hsleiden.joshuabloch.menu.SceneManager;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class Main extends GameApplication {
 
-    private Entity player;
+    public Entity player;
     private ScoreCounter scoreCounter;
     private LevelManager levelManager;
+    private SceneManager sceneManager;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,21 +27,23 @@ public class Main extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
+        scoreCounter = new ScoreCounter();
+        levelManager = new LevelManager(scoreCounter, this);
+        sceneManager = new SceneManager(levelManager);
         settings.setWidth(1280);
         settings.setHeight(720);
         settings.setAppIcon("icon.png");
         settings.setTitle("PC builder : 2021");
         settings.setVersion("1.0");
         settings.setMainMenuEnabled(true);
-        settings.setSceneFactory(new MySceneFactory());
+        settings.setSceneFactory(sceneManager);
         settings.setFullScreenAllowed(true);
         settings.setDeveloperMenuEnabled(true);
     }
 
     @Override
     protected void onPreInit() {
-        scoreCounter = new ScoreCounter();
-        levelManager = new LevelManager();
+        levelManager.addSaveHandler();
     }
 
     @Override
@@ -85,30 +82,17 @@ public class Main extends GameApplication {
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        vars.put("coin", 100);
+        vars.put("coin", 0);
     }
 
     @Override
     protected void initGame() {
-        levelManager.addHandler();
-        levelManager.setName("jelle");
-        //TODO ask and set the player name
-        levelManager.addHandler();
-        levelManager.start();
-        levelManager.finished(10);
-        levelManager.writeSave();
-
-        player = spawn("player", 50, 50);
-
-        Viewport viewport = getGameScene().getViewport();
-        viewport.setBounds(-1500, 0, 130 * 32, getAppHeight());
-        viewport.bindToEntity(player, getAppWidth() / 2f, getAppHeight() /2f);
-        viewport.setLazy(true);
+        levelManager.initGame();
     }
 
     @Override
     protected void initPhysics() {
-        new Physics(scoreCounter);
+        new Collisions(scoreCounter, levelManager, sceneManager);
     }
 
     @Override
