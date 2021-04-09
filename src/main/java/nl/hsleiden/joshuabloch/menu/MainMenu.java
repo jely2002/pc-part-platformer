@@ -25,7 +25,6 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class MainMenu extends FXGLMenu {
     private static final int SIZE = 250;
-    private final Animation<?> animation;
     private final Rectangle buttonLevel1;
     private final Rectangle buttonLevel2;
     private final Rectangle buttonLevel3;
@@ -143,12 +142,14 @@ public class MainMenu extends FXGLMenu {
         buttonLogin.setArcWidth(15);
         buttonLogin.strokeProperty().bind(Bindings.when(buttonLogin.hoverProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
         buttonLogin.fillProperty().bind(Bindings.when(buttonLogin.pressedProperty()).then(Color.web("425622",1.0)).otherwise(Color.web("6E834C",1.0)));
-        buttonLogin.setOnMouseClicked(e -> getDialogService().showInputBox("Please enter your name:", answer -> levelManager.setName(answer, c -> {
-            textLogin.setText("LOGGED IN");
-            lockButtons(levelManager.levelProgress);
-            showHighscores();
-            return null;
-        })));
+        buttonLogin.setOnMouseClicked(e -> getDialogService().showInputBox("Please enter your name:", answer -> {
+            levelManager.setName(answer.toLowerCase(), c -> {
+                textLogin.setText("LOGGED IN");
+                lockButtons(levelManager.levelProgress);
+                showHighscores();
+                return null;
+            });
+        }));
 
         // Button Quit
         var buttonQuit = new Rectangle(SIZE, 60);
@@ -297,42 +298,6 @@ public class MainMenu extends FXGLMenu {
         lockButtons(levelManager.levelProgress);
 
         getContentRoot().getChildren().addAll(imageView, vBoxMain);
-        getContentRoot().setScaleX(0);
-        getContentRoot().setScaleY(0);
 
-
-
-
-
-
-
-        animation = FXGL.animationBuilder()
-
-                .duration(Duration.seconds(0.66))
-
-                .interpolator(Interpolators.EXPONENTIAL.EASE_OUT())
-
-                .scale(getContentRoot())
-
-                .from(new Point2D(0, 0))
-
-                .to(new Point2D(1, 1))
-
-                .build();
-
-    }
-
-    @Override
-    public void onCreate() {
-        animation.setOnFinished(EmptyRunnable.INSTANCE);
-        animation.stop();
-        animation.start();
-
-    }
-
-
-    @Override
-    protected void onUpdate(double tpf) {
-        animation.onUpdate(tpf);
     }
 }
