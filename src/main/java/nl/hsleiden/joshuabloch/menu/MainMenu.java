@@ -199,8 +199,6 @@ public class MainMenu extends FXGLMenu {
         speakerView.setPreserveRatio(true);
 
 
-
-
         // Text Level 1
         Text textLevel1 = FXGL.getUIFactoryService().newText("LEVEL 1", Color.web("9db379",1.0), FontType.GAME, 24.0);
         textLevel1.setTextAlignment(TextAlignment.CENTER);
