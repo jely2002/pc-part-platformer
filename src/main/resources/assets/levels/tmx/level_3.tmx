@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="130" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="216">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="130" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="217">
  <properties>
   <property name="background" value="beach_level.png"/>
+  <property name="cost" value="28"/>
  </properties>
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="22" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
@@ -81,9 +82,6 @@
 </data>
  </layer>
  <objectgroup id="8" name="Object Layer 1">
-  <properties>
-   <property name="background" value="forest"/>
-  </properties>
   <object id="22" type="scalper" x="1440.67" y="531.334">
    <point/>
   </object>
@@ -185,5 +183,10 @@
   <object id="212" type="platform" x="3942.67" y="364" width="32" height="32" rotation="45"/>
   <object id="213" type="platform" x="3973.33" y="301.333" width="32" height="32" rotation="45"/>
   <object id="214" type="platform" x="4128" y="301.333" width="32" height="32" rotation="45"/>
+  <object id="216" type="part" x="4031.32" y="196" width="64" height="64">
+   <properties>
+    <property name="part-type" value="cpu"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="200" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="202">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="200" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="203">
  <properties>
   <property name="background" value="lava_castle.png"/>
+  <property name="cost" value="30"/>
  </properties>
- <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="22" columns="0">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="19" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="32" height="32" source="Dirt.png"/>
@@ -190,5 +191,10 @@
   <object id="199" type="coin" x="6060" y="465.334" width="32" height="32"/>
   <object id="200" type="platform" x="3997.34" y="413.333" width="36" height="14.6667"/>
   <object id="201" type="platform" x="4320" y="126.667" width="33.3333" height="16"/>
+  <object id="202" type="part" x="6319.33" y="142.001" width="64" height="64">
+   <properties>
+    <property name="part-type" value="gpu"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -52,17 +52,27 @@ public class Collisions {
                         .from(new Point2D(1, 1))
                         .to(new Point2D(0,0))
                         .buildAndPlay();
-                FXGL.animationBuilder()
+                animationBuilder()
                         .interpolator(Interpolators.SMOOTH.EASE_OUT())
                         .onFinished(() -> {
                             Integer highscore = levelManager.getHighScore(levelManager.currentLevelID);
-                            getDialogService().showMessageBox(highscore != null ? (highscore < geti("coin") ? "You beat the highscore, good job!" : "You didn't beat the highscore, better luck next time." ): "You got the pc part. On to the next level!", () -> {
-                                getGameController().gotoMainMenu();
-                                levelManager.finished(geti("coin"));
-                                sceneManager.getMainMenu().lockButtons(levelManager.levelProgress);
-                                sceneManager.getMainMenu().showHighscores();
-                                part.removeFromWorld();
-                            });
+                            if(levelManager.currentLevelID == 3) {
+                                getDialogService().showMessageBox(highscore != null ? (highscore < geti("coin") ? "You beat the highscore, good job!" : "You didn't beat the highscore, better luck next time.") : "You got all the parts required! Congratulations!", () -> {
+                                    getGameController().gotoMainMenu();
+                                    levelManager.finished(geti("coin"));
+                                    sceneManager.getMainMenu().lockButtons(levelManager.levelProgress);
+                                    sceneManager.getMainMenu().showHighscores();
+                                    part.removeFromWorld();
+                                });
+                            } else {
+                                getDialogService().showMessageBox(highscore != null ? (highscore < geti("coin") ? "You beat the highscore, good job!" : "You didn't beat the highscore, better luck next time.") : "You got the pc part. On to the next level!", () -> {
+                                    getGameController().gotoMainMenu();
+                                    levelManager.finished(geti("coin"));
+                                    sceneManager.getMainMenu().lockButtons(levelManager.levelProgress);
+                                    sceneManager.getMainMenu().showHighscores();
+                                    part.removeFromWorld();
+                                });
+                            }
                         })
                         .duration(Duration.seconds(1.6))
                         .rotate(part)

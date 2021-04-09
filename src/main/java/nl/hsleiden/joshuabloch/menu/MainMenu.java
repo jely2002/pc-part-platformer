@@ -144,9 +144,22 @@ public class MainMenu extends FXGLMenu {
         buttonLogin.fillProperty().bind(Bindings.when(buttonLogin.pressedProperty()).then(Color.web("425622", 1.0)).otherwise(Color.web("6E834C", 1.0)));
         buttonLogin.setOnMouseClicked(e -> getDialogService().showInputBox("Please enter your name:", answer -> {
             levelManager.setName(answer.toLowerCase(), c -> {
-                textLogin.setText("LOGGED IN");
-                lockButtons(levelManager.levelProgress);
-                showHighscores();
+                getDialogService().showInputBox(levelManager.password != null ? "Please enter your password:" : "Please create a password:", pw -> {
+                    System.out.println("ENTERED: " + pw);
+                    levelManager.setPassword(pw, i ->  {
+                        System.out.println(i);
+                        if(i) {
+                            buttonLogin.setDisable(true);
+                            textLogin.setText("LOGGED IN");
+                            lockButtons(levelManager.levelProgress);
+                            showHighscores();
+                        } else {
+                            getDialogService().showMessageBox("Wrong password, please try again.");
+                        }
+                        levelManager.writeSave();
+                        return null;
+                    });
+                });
                 return null;
             });
         }));
@@ -327,7 +340,7 @@ public class MainMenu extends FXGLMenu {
         logoView.setY(100);
 
         // GPU Picture under logo
-        ImageView logoViewGPU = new ImageView(new Image("assets/textures/gpu.png"));
+        ImageView logoViewGPU = new ImageView(new Image("assets/textures/icon.png"));
         logoViewGPU.setFitWidth(250);
         logoViewGPU.setPreserveRatio(true);
         logoViewGPU.setX(750);
